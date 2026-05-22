@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kaike_Dev | Engenharia Front-end</title>
+    
+    <link rel="icon" type="image/png" href="assets/image.png">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
@@ -25,30 +28,39 @@
 </div>
     
 
-    <!-- ── NAVBAR ─────────────────────────────────────────── -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-blur fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-gradient tracking-tight" href="#">&lt; Kaike_Dev/&gt;</a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+   <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav-tech-transition">
+        <div class="container py-2 py-lg-3" id="nav-container">
+            <a class="navbar-brand fw-bold text-gradient tracking-tight glitch-logo" href="#" data-text="< Kaike_Dev />">
+                &lt; Kaike_Dev/&gt;
+            </a>
+            
+            <button class="navbar-toggler border-0 tech-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="tech-toggler-icon"></span>
             </button>
+            
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto text-center gap-3 py-3 py-lg-0">
+                <ul class="navbar-nav ms-auto text-center gap-2 gap-lg-4 py-3 py-lg-0 align-items-center">
                     <li class="nav-item"><a class="nav-link active" href="#home">Início</a></li>
                     <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
                     <li class="nav-item"><a class="nav-link" href="#projetos">Projetos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <a class="nav-link nav-btn-cta px-4 py-2" href="#contato">Contato <i class="bi bi-terminal ms-1"></i></a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- ── HERO ───────────────────────────────────────────── -->
-    <section id="home" class="min-vh-100 d-flex align-items-center pt-5 position-relative overflow-hidden text-center">
+   <section id="home" class="min-vh-100 d-flex align-items-center pt-5 position-relative overflow-hidden text-center">
         <div class="glow-bg-hero"></div>
-        <!-- Grade de pontos sutil ao fundo -->
         <div class="hero-dot-grid"></div>
 
+       <div class="shooting-stars">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
         <div class="container position-relative z-1 d-flex flex-column align-items-center justify-content-center">
             <div class="row justify-content-center w-100">
                 <div class="col-lg-10 hidden-fade d-flex flex-column align-items-center text-center">
@@ -75,7 +87,7 @@
 
                     <div class="d-flex flex-wrap justify-content-center gap-3 gap-md-4">
                         <a href="#projetos" class="btn btn-primary px-5 py-3 shadow-sm">Explorar Trabalho</a>
-                        <a href="#contato" class="btn-ghost-arrow">Iniciar Conversa <i class="bi bi-arrow-right"></i></a>
+                       <a href="https://wa.me/5574981489714?text=Ol%C3%A1%20Kaike%2C%20acessei%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20iniciar%20uma%20conversa!" target="_blank" class="btn-ghost-arrow">Iniciar Conversa <i class="bi bi-arrow-right"></i></a>
                     </div>
 
                     <!-- Stats rápidas abaixo dos botões -->
@@ -98,14 +110,15 @@
 
                 </div>
             </div>
-        </div>
+        </div><br><br><br>
 
         <!-- Indicador de scroll -->
         <div class="scroll-indicator">
             <div class="scroll-indicator-line"></div>
             <span>scroll</span>
         </div>
-    </section>
+    </section><br><br><br><br>
+
 
     <!-- ── TICKER ─────────────────────────────────────────── -->
     <div class="ticker-wrap">
