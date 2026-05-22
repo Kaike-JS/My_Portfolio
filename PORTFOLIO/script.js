@@ -323,14 +323,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                 } catch (error) {
-                    // ERRO: Volta o botão e exibe falha
+                    console.error('Erro detalhado:', error); // Isso vai mostrar o erro no console (F12)
+                    
                     submitBtn.classList.remove('btn-loading');
                     submitBtn.style.width = `100%`;
                     submitBtn.style.borderRadius = '';
                     submitBtn.style.pointerEvents = 'auto';
                     submitText.style.opacity = '1';
                     
-                    feedbackMsg.innerText = 'Ocorreu um erro ao enviar. Tente me contatar diretamente por e-mail.';
+                    // Exibe o erro real para você saber o que está rolando
+                    feedbackMsg.innerText = 'Erro: ' + error.message; 
                     feedbackMsg.classList.remove('d-none');
                 }
             });
