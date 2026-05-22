@@ -11,6 +11,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
+
+    // ── SCROLL DINÂMICO PARA NAVBAR PREMIUM ──────────────────
+    const navbar = document.querySelector('.navbar');
+    const navContainer = document.getElementById('nav-container');
+
+    function checkScroll() {
+        if (window.scrollY > 40) {
+            navbar.classList.add('nav-scrolled');
+            if (window.innerWidth >= 992) {
+                navContainer.classList.remove('py-lg-3');
+                navContainer.classList.add('py-lg-2');
+            }
+        } else {
+            navbar.classList.remove('nav-scrolled');
+            if (window.innerWidth >= 992) {
+                navContainer.classList.remove('py-lg-2');
+                navContainer.classList.add('py-lg-3');
+            }
+        }
+    }
+    window.addEventListener('scroll', checkScroll);
+    window.addEventListener('resize', checkScroll);
+    checkScroll(); // Executa ao carregar a página
+
+    // ── DIGITAL HACKER REVEAL EFFECT NO LOGO ──────────────────
+    const logo = document.querySelector('.glitch-logo');
+    const chars = '01XYZ<>/_[]{}*#+$@';
+    let originalText = logo.innerText;
+    let interval = null;
+
+    logo.addEventListener('mouseover', () => {
+        let iteration = 0;
+        clearInterval(interval);
+        
+        interval = setInterval(() => {
+            logo.innerText = originalText
+                .split("")
+                .map((char, index) => {
+                    if(index < iteration) {
+                        return originalText[index];
+                    }
+                    return chars[Math.floor(Math.random() * chars.length)];
+                })
+                .join("");
+            
+            if(iteration >= originalText.length) {
+                clearInterval(interval);
+            }
+            iteration += 1 / 3; // Velocidade do efeito
+        }, 30);
+    });
+
     // ── 1. CURSOR ROXO ANIMADO ───────────────────────────────
     const isDesktop = window.matchMedia('(pointer: fine)').matches;
 
@@ -322,7 +374,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         throw new Error(result.message);
                     }
 
-                } catch (error) {
+                }  catch (error) {
                     console.error('Erro detalhado:', error); // Isso vai mostrar o erro no console (F12)
                     
                     submitBtn.classList.remove('btn-loading');
