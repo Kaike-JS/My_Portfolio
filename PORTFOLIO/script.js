@@ -279,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // 2. Prepara o pacote de dados para a API
                 const payload = {
-                    access_key: 'SUA_CHAVE_DE_ACESSO_AQUI', // VOCÊ VAI COLOCAR SUA CHAVE AQUI
+                    access_key: '585fad95-1fee-47bc-a97e-c2526973b719', // VOCÊ VAI COLOCAR SUA CHAVE AQUI
                     subject: 'Novo Contato do Portfólio - ' + nome,
                     name: nome,
                     email: email,
