@@ -102,7 +102,165 @@ body.no-scroll { overflow: hidden !important; }
     0% { transform: translateY(100%); opacity: 0; }
     100% { transform: translateY(0); opacity: 1; }
 }
+/* ==========================================================
+   CHUVA DE METEOROS REFINADA (MAIS SUAVE E MENOS INTENSA)
+========================================================== */
+.shooting-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
 
+.shooting-stars span {
+    position: absolute;
+    width: 140px; /* Rastros um pouco mais discretos */
+    height: 1.5px; /* Linha mais fina */
+    /* Opacidade máxima reduzida para 0.4 para ficar bem sutil */
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4));
+    opacity: 0;
+    animation: meteorRain linear infinite;
+}
+
+.shooting-stars span::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 3px; /* Cabeça menor */
+    height: 3px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    /* Brilho esfumaçado bem mais suave e menos estourado */
+    box-shadow: 0 0 8px 1px rgba(255, 255, 255, 0.4); 
+}
+
+@keyframes meteorRain {
+    0% {
+        transform: rotate(135deg) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 1;
+    }
+    100% {
+        transform: rotate(135deg) translateX(2200px);
+        opacity: 0;
+    }
+}
+
+/* TIMING MAIS ESPAÇADO
+   Aumentamos o tempo de duração de todas as estrelas (entre 3s e 6s).
+   Agora elas cruzam o espaço de forma calma, dando um ar mais premium.
+*/
+.shooting-stars span:nth-child(1)  { top: -5%;  left: 10%;  animation-delay: 0s;   animation-duration: 4.0s; }
+.shooting-stars span:nth-child(2)  { top: -5%;  left: 35%;  animation-delay: 2.5s; animation-duration: 5.5s; }
+.shooting-stars span:nth-child(3)  { top: -5%;  left: 60%;  animation-delay: 1.0s; animation-duration: 4.5s; }
+.shooting-stars span:nth-child(4)  { top: -5%;  left: 85%;  animation-delay: 4.8s; animation-duration: 6.0s; }
+.shooting-stars span:nth-child(5)  { top: -5%;  left: 100%; animation-delay: 0.5s; animation-duration: 3.5s; }
+
+.shooting-stars span:nth-child(6)  { top: 10%;  left: 105%; animation-delay: 3.2s; animation-duration: 4.8s; }
+.shooting-stars span:nth-child(7)  { top: 25%;  left: 105%; animation-delay: 1.8s; animation-duration: 4.2s; }
+.shooting-stars span:nth-child(8)  { top: 40%;  left: 105%; animation-delay: 6.0s; animation-duration: 5.8s; }
+.shooting-stars span:nth-child(9)  { top: 55%;  left: 105%; animation-delay: 2.9s; animation-duration: 4.6s; }
+.shooting-stars span:nth-child(10) { top: -5%;  left: 20%;  animation-delay: 5.2s; animation-duration: 3.8s; }
+
+.shooting-stars span:nth-child(11) { top: -5%;  left: 45%;  animation-delay: 1.5s; animation-duration: 5.2s; }
+.shooting-stars span:nth-child(12) { top: -5%;  left: 75%;  animation-delay: 7.0s; animation-duration: 6.2s; }
+.shooting-stars span:nth-child(13) { top: 15%;  left: 105%; animation-delay: 4.1s; animation-duration: 3.6s; }
+.shooting-stars span:nth-child(14) { top: 35%;  left: 105%; animation-delay: 0.8s; animation-duration: 5.0s; }
+.shooting-stars span:nth-child(15) { top: -5%;  left: 55%;  animation-delay: 3.9s; animation-duration: 4.4s; }
+
+
+/* ==========================================================
+   HEADER & NAVBAR ULTRA-PROFISSIONAL (HIGH-TECH)
+========================================================== */
+.nav-tech-transition {
+    transition: background-color 0.4s var(--ease-out), 
+                backdrop-filter 0.4s var(--ease-out), 
+                box-shadow 0.4s var(--ease-out),
+                border-color 0.4s var(--ease-out);
+    border-bottom: 1px solid transparent;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+/* Estado ativo injetado via JS ao rolar o scroll */
+.nav-scrolled {
+    background-color: rgba(5, 5, 5, 0.75) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(168, 85, 247, 0.15) !important;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 15px 0 rgba(168, 85, 247, 0.03);
+}
+
+/* Container encolhe suavemente */
+#nav-container {
+    transition: padding 0.4s var(--ease-out);
+}
+
+/* Botão de contato estilo Dashboard Premium */
+.nav-btn-cta {
+    background: rgba(168, 85, 247, 0.06) !important;
+    border: 1px solid rgba(168, 85, 247, 0.25) !important;
+    border-radius: 100px !important;
+    color: var(--text-main) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s var(--ease-out) !important;
+}
+.nav-btn-cta::after { display: none !important; } /* Remove linha de baixo */
+
+.nav-btn-cta:hover {
+    background: var(--text-main) !important;
+    color: #050505 !important;
+    border-color: var(--text-main) !important;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+    transform: translateY(-1px);
+}
+
+/* Customização do botão mobile hambúrguer para ficar tecnológico */
+.tech-toggler {
+    padding: 0.5rem;
+    background: transparent;
+}
+.tech-toggler-icon {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-main);
+    position: relative;
+    transition: transform 0.3s;
+}
+.tech-toggler-icon::before, .tech-toggler-icon::after {
+    content: '';
+    position: absolute;
+    width: 100%; height: 2px;
+    background: var(--text-main);
+    left: 0; transition: transform 0.3s, top 0.3s;
+}
+.tech-toggler-icon::before { top: -6px; }
+.tech-toggler-icon::after { top: 6px; }
+
+/* Animação do botão aberto no mobile */
+.tech-toggler[aria-expanded="true"] .tech-toggler-icon { background: transparent; }
+.tech-toggler[aria-expanded="true"] .tech-toggler-icon::before { transform: rotate(45deg); top: 0; }
+.tech-toggler[aria-expanded="true"] .tech-toggler-icon::after { transform: rotate(-45deg); top: 0; }
+
+/* EFETIO DE LOGO: MATRIX / CYBER REVEAL CLOCK */
+.glitch-logo {
+    position: relative;
+    font-family: monospace;
+    letter-spacing: -0.02em;
+}
 
 /* ── 3. UTILITÁRIOS ─────────────────────────────────────────*/
 .tracking-wider  { letter-spacing: 0.1em; }
@@ -181,7 +339,121 @@ body.no-scroll { overflow: hidden !important; }
     box-shadow: 0 0 8px rgba(34,197,94,0.6);
     animation: blink 2.5s ease-in-out infinite;
 }
+/* ==========================================================
+   HEADER & NAVBAR ULTRA-PROFISSIONAL (HIGH-TECH)
+========================================================== */
+.nav-tech-transition {
+    transition: background-color 0.4s var(--ease-out), 
+                backdrop-filter 0.4s var(--ease-out), 
+                box-shadow 0.4s var(--ease-out),
+                border-color 0.4s var(--ease-out);
+    border-bottom: 1px solid transparent;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
 
+/* Estado ativo injetado via JS ao rolar o scroll */
+.nav-scrolled {
+    background-color: rgba(5, 5, 5, 0.75) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(168, 85, 247, 0.15) !important;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 15px 0 rgba(168, 85, 247, 0.03);
+}
+
+/* Container encolhe suavemente */
+#nav-container {
+    transition: padding 0.4s var(--ease-out);
+}
+
+/* Links padrão da Navbar */
+.navbar .nav-link {
+    color: var(--text-muted); font-weight: 500;
+    position: relative; transition: color .3s;
+    padding-bottom: 2px !important;
+}
+
+.navbar .nav-link::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 1px; background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .35s var(--ease-out);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active { color: var(--text-main) !important; }
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after { transform: scaleX(1); }
+
+/* ── BOTÃO DE CONTATO (CTA DESTAQUE) ─────────────────────── */
+.navbar .nav-link.nav-btn-cta {
+    background: rgba(168, 85, 247, 0.06) !important;
+    border: 1px solid rgba(168, 85, 247, 0.25) !important;
+    border-radius: 100px !important;
+    color: var(--text-main) !important;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s var(--ease-out) !important;
+}
+
+/* Remove a linha roxa debaixo do botão de destaque */
+.navbar .nav-link.nav-btn-cta::after { display: none !important; } 
+
+/* Resolvido o bug do 'Tudo Branco': Forçamos a cor escura no hover */
+.navbar .nav-link.nav-btn-cta:hover {
+    background: var(--text-main) !important;
+    color: #050505 !important; /* Cor preta/escura para contrastar com o fundo branco */
+    border-color: var(--text-main) !important;
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
+    transform: translateY(-1px);
+}
+
+/* Customização do botão mobile hambúrguer */
+.tech-toggler {
+    padding: 0.5rem;
+    background: transparent;
+}
+.tech-toggler-icon {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-main);
+    position: relative;
+    transition: transform 0.3s;
+}
+.tech-toggler-icon::before, .tech-toggler-icon::after {
+    content: '';
+    position: absolute;
+    width: 100%; height: 2px;
+    background: var(--text-main);
+    left: 0; transition: transform 0.3s, top 0.3s;
+}
+.tech-toggler-icon::before { top: -6px; }
+.tech-toggler-icon::after { top: 6px; }
+
+/* Animação do botão aberto no mobile */
+.tech-toggler[aria-expanded="true"] .tech-toggler-icon { background: transparent; }
+.tech-toggler[aria-expanded="true"] .tech-toggler-icon::before { transform: rotate(45deg); top: 0; }
+.tech-toggler[aria-expanded="true"] .tech-toggler-icon::after { transform: rotate(-45deg); top: 0; }
+
+/* Efeito do Logo */
+.glitch-logo {
+    position: relative;
+    font-family: monospace;
+    letter-spacing: -0.02em;
+}
+
+/* ── 3. UTILITÁRIOS ─────────────────────────────────────────*/
+.tracking-wider  { letter-spacing: 0.1em; }
+.tracking-tight  { letter-spacing: -0.04em; }
+.section-padding { padding-top: 100px; padding-bottom: 100px; }
+
+.text-gradient {
+    background: linear-gradient(135deg, #e2e8f0 0%, #a855f7 50%, #6366f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 @keyframes blink {
     0%,100% { opacity:1; } 50% { opacity:.3; }
 }
@@ -590,4 +862,114 @@ body.no-scroll { overflow: hidden !important; }
     .hero-stat-divider { width: 36px; height: 1px; }
     .scroll-indicator { display: none; }
     .footer-inner { flex-direction: column; text-align: center; }
+}
+
+
+/* ==========================================================================
+   15. RESPONSIVE ARCHITECTURE (Upgraded for Tablets & Mobile)
+   ========================================================================== */
+
+/* ── TABLETS (Abaixo de 991px) ────────────────────────────────────────── */
+@media (max-width: 991.98px) {
+    .section-padding { padding-top: 80px; padding-bottom: 80px; }
+    
+    /* Ajustes na Navbar para Mobile */
+    .navbar .container { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .bg-blur { background-color: rgba(5,5,5,0.92) !important; } /* Menos transparente no mobile */
+    
+    /* Reduz o tamanho do título para não estourar em tablets */
+    .hero-title { font-size: 3.5rem !important; }
+    
+    /* Desativa os efeitos de hover de rotação/escala nas skills para evitar bugs no touch */
+    .skill-badge:hover { transform: none !important; }
+    
+    /* Ajuste de espaço nos cards de projeto */
+    .project-iframe-container { height: 240px; }
+}
+
+/* ── CELULARES (Abaixo de 768px) ───────────────────────────────────────── */
+@media (max-width: 767.98px) {
+    /* 1. Forçar sumiço do cursor customizado em telas touch */
+    .custom-cursor-dot, 
+    .custom-cursor-circle { 
+        display: none !important; 
+    }
+    * { cursor: auto !important; }
+
+    /* 2. Correção do Preloader */
+    .loader-text { font-size: 2.2rem; }
+    .loader-dot { font-size: 2.5rem; }
+
+    /* 3. Ajuste do topo (Home Hero) */
+    #home { padding-top: 100px !important; }
+    .glow-bg-hero { width: 320px; height: 320px; filter: blur(60px); }
+    
+    .hero-title { 
+        font-size: 2.4rem !important; 
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+    }
+    
+    .floating-word { margin-right: 4px; }
+    
+    #home .lead { font-size: 1rem !important; padding: 0 10px; }
+
+    /* 4. Ajustes nos botões e links da Hero */
+    .btn-ghost-arrow { padding: 0.8rem 0; }
+    .btn-ghost-arrow:hover { gap: 8px; } /* Evita saltos visuais bruscos na tela mobile */
+
+    /* 5. Correção estrutural das Stats (Sua regra adaptada e polida) */
+    .hero-stats { 
+        flex-direction: column; 
+        gap: 1.25rem; 
+        padding: 1.5rem; 
+        width: 100%;
+        max-width: 340px;
+    }
+    .hero-stat-divider { width: 40px; height: 1px; background: var(--border); }
+    .scroll-indicator { display: none !important; }
+
+    /* 6. Ticker de Skills Rolantes */
+    .ticker-wrap { padding: 0.6rem 0; }
+    .ticker-track { gap: 1.5rem; }
+
+    /* 7. Sessão Sobre e Skills Grid */
+    #sobre .display-5 { font-size: 2rem; }
+    .about-links { margin-bottom: 1.5rem; }
+    .skill-badge { padding: 0.5rem 0.9rem; font-size: 0.8rem; }
+
+    /* 8. RESOLUÇÃO DOS IFRAMES NOS PROJETOS (Crucial para Mobile) */
+    .project-iframe-container { 
+        height: 200px; 
+        pointer-events: none; /* Bloqueia o iframe no mobile para não roubar o scroll do dedo */
+    }
+    /* Altera o fator de escala para simular um tablet/mobile dentro do card */
+    .project-iframe {
+        width: 166.6%;
+        height: 166.6%;
+        transform: scale(0.6) translateZ(0);
+    }
+    .interact-badge { display: none !important; } /* Não faz sentido "passe o mouse" no celular */
+    .iframe-overlay { background: rgba(10,15,28,0.15); } /* Deixa o preview mais visível */
+
+    /* 9. Formulário de Contato */
+    #contato .display-5 { font-size: 2rem; }
+    .contact-info-card:hover { transform: none; } /* Desativa o slide lateral no mobile */
+    
+    .input-custom { padding: 0.75rem 1rem; font-size: 0.95rem; }
+    
+    /* 10. Footer */
+    .footer-inner { 
+        flex-direction: column; 
+        text-align: center; 
+        gap: 1rem; 
+    }
+    .footer-top-link { justify-content: center; width: 100%; padding-top: 0.5rem; }
+}
+
+/* ── CELULARES MUITO PEQUENOS (Abaixo de 380px) ────────────────────────── */
+@media (max-width: 379.98px) {
+    .hero-title { font-size: 2rem !important; }
+    .hero-stats { padding: 1rem; }
+    .skill-badge { width: 100%; justify-content: center; } /* Badges em lista cheia se a tela for minúscula */
 }
