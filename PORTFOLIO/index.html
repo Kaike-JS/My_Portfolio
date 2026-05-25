@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaike_Dev | Engenharia Front-end</title>
+    <title>Kaike_Dev | Engenharia Front-end & Fullstack</title>
     
     <link rel="icon" type="image/png" href="assets/image.png">
     
@@ -17,26 +17,26 @@
 </head>
 <body class="no-scroll">
 
-<div id="preloader">
-
-<div class="loader-text ">
-
-<span class="loader-word">Kaike</span><span class="loader-dot"> </span><span class=" text-gradient loader-word dev-word">Dev</span>
-
-</div>
-
-</div>
+    <div id="preloader">
+        <div class="loader-text">
+            <span class="loader-word">Kaike</span><span class="loader-dot"> </span><span class="text-gradient loader-word dev-word">Dev</span>
+        </div>
+    </div>
     
-
-   <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav-tech-transition">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav-tech-transition">
         <div class="container py-2 py-lg-3" id="nav-container">
             <a class="navbar-brand fw-bold text-gradient tracking-tight glitch-logo" href="#" data-text="< Kaike_Dev />">
                 &lt; Kaike_Dev/&gt;
             </a>
             
-            <button class="navbar-toggler border-0 tech-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="tech-toggler-icon"></span>
-            </button>
+            <div class="d-flex align-items-center gap-2 order-lg-last">
+                <button id="accent-toggle-btn" class="nav-link theme-shifter-btn" title="Alterar Matriz de Cor (Accent)">
+                    <i class="bi bi-palette"></i>
+                </button>
+                <button class="navbar-toggler border-0 tech-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="tech-toggler-icon"></span>
+                </button>
+            </div>
             
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto text-center gap-2 gap-lg-4 py-3 py-lg-0 align-items-center">
@@ -51,12 +51,11 @@
         </div>
     </nav>
 
-    <!-- ── HERO ───────────────────────────────────────────── -->
-   <section id="home" class="min-vh-100 d-flex align-items-center pt-5 position-relative overflow-hidden text-center">
+    <section id="home" class="min-vh-100 d-flex align-items-center pt-5 position-relative overflow-hidden text-center">
         <div class="glow-bg-hero"></div>
         <div class="hero-dot-grid"></div>
 
-       <div class="shooting-stars">
+        <div class="shooting-stars">
             <span></span><span></span><span></span><span></span><span></span>
             <span></span><span></span><span></span><span></span><span></span>
             <span></span><span></span><span></span><span></span><span></span>
@@ -65,121 +64,117 @@
             <div class="row justify-content-center w-100">
                 <div class="col-lg-10 hidden-fade d-flex flex-column align-items-center text-center">
 
-                    <!-- Badge de disponibilidade com ponto pulsante -->
                     <div class="availability-badge mb-4">
                         <span class="avail-dot"></span>
-                        Disponível para novos projetos
+                        Disponível para arquitetura de software & contratos
                     </div>
 
                     <h1 class="display-1 fw-bold mb-4 tracking-tight text-white hero-title">
                         <span class="floating-word">Engenharia</span>
                         <span class="floating-word">Front-end</span><br>
                         <span class="floating-word">&amp;</span>
-                        <span class="floating-word text-gradient">Design</span>
-                        <span class="floating-word text-gradient">de</span>
-                        <span class="floating-word text-gradient">Experiências.</span>
+                        <span class="floating-word text-gradient">Sistemas</span>
+                        <span class="floating-word text-gradient">Escaláveis.</span>
                     </h1>
 
-                    <p class="lead text-secondary mb-5" style="max-width: 650px; font-size: 1.2rem; font-weight: 300; line-height: 1.8;">
-                        Não construo apenas sites. Desenvolvo plataformas digitais de alta performance,
-                        unindo arquitetura de código limpo com interfaces pixel-perfect no Figma.
+                    <p class="lead text-secondary mb-5" style="max-width: 700px; font-size: 1.2rem; font-weight: 300; line-height: 1.8;">
+                        Desenvolvo plataformas digitais completas de alta performance. Da concepção visual milimétrica no 
+                        Figma à engenharia de dados robusta e segura utilizando Supabase e bancos relacionais.
                     </p>
 
                     <div class="d-flex flex-wrap justify-content-center gap-3 gap-md-4">
-                        <a href="#projetos" class="btn btn-primary px-5 py-3 shadow-sm">Explorar Trabalho</a>
-                       <a href="https://wa.me/5574981489714?text=Ol%C3%A1%20Kaike%2C%20acessei%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20iniciar%20uma%20conversa!" target="_blank" class="btn-ghost-arrow">Iniciar Conversa <i class="bi bi-arrow-right"></i></a>
+                        <a href="#projetos" class="btn btn-primary px-5 py-3 shadow-sm">Ver Ecossistema</a>
+                        <a href="https://wa.me/5574981489714?text=Ol%C3%A1%20Kaike%2C%20acessei%20seu%20portf%C3%B3lio%20e%20gostaria%20de%20iniciar%20um%20projeto!" target="_blank" class="btn-ghost-arrow">Iniciar Briefing <i class="bi bi-arrow-right"></i></a>
                     </div>
 
-                    <!-- Stats rápidas abaixo dos botões -->
                     <div class="hero-stats mt-5">
                         <div class="hero-stat">
-                            <span class="hero-stat-num">2+</span>
-                            <span class="hero-stat-label">Anos de experiência</span>
+                            <span class="hero-stat-num" data-target="2">0</span><span class="hero-stat-suffix">+</span>
+                            <span class="hero-stat-label">Anos de Engenharia</span>
                         </div>
                         <div class="hero-stat-divider"></div>
                         <div class="hero-stat">
-                            <span class="hero-stat-num">10+</span>
-                            <span class="hero-stat-label">Projetos entregues</span>
+                            <span class="hero-stat-num" data-target="15">0</span><span class="hero-stat-suffix">+</span>
+                            <span class="hero-stat-label">Aplicações Concluídas</span>
                         </div>
                         <div class="hero-stat-divider"></div>
                         <div class="hero-stat">
-                            <span class="hero-stat-num">100%</span>
-                            <span class="hero-stat-label">Satisfação dos clientes</span>
+                            <span class="hero-stat-num" data-target="100">0</span><span class="hero-stat-suffix">%</span>
+                            <span class="hero-stat-label">Segurança & Performance</span>
                         </div>
                     </div>
 
                 </div>
             </div>
-        </div><br><br><br>
+        </div>
 
-        <!-- Indicador de scroll -->
         <div class="scroll-indicator">
             <div class="scroll-indicator-line"></div>
-            <span>scroll</span>
+            <span>scroll para explorar</span>
         </div>
-    </section><br><br><br><br>
+    </section>
 
-
-    <!-- ── TICKER ─────────────────────────────────────────── -->
     <div class="ticker-wrap">
         <div class="ticker-track">
-            <span>HTML5</span><span class="ticker-sep">✦</span>
-            <span>CSS3</span><span class="ticker-sep">✦</span>
-            <span>JavaScript</span><span class="ticker-sep">✦</span>
+            <span>Supabase</span><span class="ticker-sep">✦</span>
+            <span>PostgreSQL</span><span class="ticker-sep">✦</span>
+            <span>JavaScript (ES6+)</span><span class="ticker-sep">✦</span>
             <span>Bootstrap 5</span><span class="ticker-sep">✦</span>
-            <span>PHP</span><span class="ticker-sep">✦</span>
+            <span>Figma UI/UX</span><span class="ticker-sep">✦</span>
+            <span>REST APIs</span><span class="ticker-sep">✦</span>
+            <span>Linux Bash</span><span class="ticker-sep">✦</span>
+            <span>PHP Backend</span><span class="ticker-sep">✦</span>
             <span>MySQL</span><span class="ticker-sep">✦</span>
-            <span>Figma</span><span class="ticker-sep">✦</span>
-            <span>Ionic</span><span class="ticker-sep">✦</span>
-            <span>UI/UX Design</span><span class="ticker-sep">✦</span>
-            <!-- duplicado para loop infinito -->
-            <span>HTML5</span><span class="ticker-sep">✦</span>
-            <span>CSS3</span><span class="ticker-sep">✦</span>
-            <span>JavaScript</span><span class="ticker-sep">✦</span>
+            <span>HTML5 &amp; CSS3</span><span class="ticker-sep">✦</span>
+            
+            <span>Supabase</span><span class="ticker-sep">✦</span>
+            <span>PostgreSQL</span><span class="ticker-sep">✦</span>
+            <span>JavaScript (ES6+)</span><span class="ticker-sep">✦</span>
             <span>Bootstrap 5</span><span class="ticker-sep">✦</span>
-            <span>PHP</span><span class="ticker-sep">✦</span>
+            <span>Figma UI/UX</span><span class="ticker-sep">✦</span>
+            <span>REST APIs</span><span class="ticker-sep">✦</span>
+            <span>Linux Bash</span><span class="ticker-sep">✦</span>
+            <span>PHP Backend</span><span class="ticker-sep">✦</span>
             <span>MySQL</span><span class="ticker-sep">✦</span>
-            <span>Figma</span><span class="ticker-sep">✦</span>
-            <span>Ionic</span><span class="ticker-sep">✦</span>
-            <span>UI/UX Design</span><span class="ticker-sep">✦</span>
+            <span>HTML5 &amp; CSS3</span><span class="ticker-sep">✦</span>
         </div>
     </div>
 
-    <!-- ── SOBRE ───────────────────────────────────────────── -->
     <section id="sobre" class="py-5 section-padding">
         <div class="container py-4">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 hidden-slide-left">
-                    <span class="text-gradient fw-bold text-uppercase tracking-wider small d-block mb-2">Background</span>
-                    <h2 class="display-5 fw-bold mb-4">Minha Trajetória</h2>
+                    <span class="text-gradient fw-bold text-uppercase tracking-wider small d-block mb-2">Engenharia de Software</span>
+                    <h2 class="display-5 fw-bold mb-4">Arquitetando Soluções Digitais</h2>
                     <div class="pe-lg-4 text-secondary fs-5" style="font-weight: 300; line-height: 1.9;">
-                        <p>Especialista em criar experiências web modernas e eficientes. Busco sempre unir a lógica robusta do back-end com a fluidez e precisão visual do front-end.</p>
-                        <p>Trabalho com foco em responsividade extrema, componentes reutilizáveis, acessibilidade e SEO otimizado, garantindo que seu produto se destaque pela estética e pela performance técnica.</p>
+                        <p>Especialista em construir pontes indestrutíveis entre designs sofisticados pixel-perfect e lógicas de backend escaláveis.</p>
+                        <p>Meu foco de atuação envolve desenvolvimento assíncrono avançado, componentização reutilizável, otimização crítica de SEO/Performance e implementação de camadas seguras de autenticação e banco de dados relacionais.</p>
                     </div>
-                    <!-- Links rápidos -->
                     <div class="about-links mt-4">
-                        <a href="mailto:pedrokaike2x@gmail.com" class="about-quick-link">
-                            <i class="bi bi-envelope"></i> pedrokaike2x@gmail.com
+                        <a href="mailto:pedrokaike2x@gmail.com" id="copy-email-btn" class="about-quick-link" title="Clique para copiar o e-mail">
+                            <i class="bi bi-envelope-fill me-2 text-primary"></i> <span class="email-text">pedrokaike2x@gmail.com</span>
                         </a>
                         <a href="https://github.com/kaike-js" target="_blank" class="about-quick-link">
-                            <i class="bi bi-github"></i> github.com/kaike-js
+                            <i class="bi bi-github me-2"></i> github.com/kaike-js
                         </a>
                     </div>
                 </div>
 
                 <div class="col-lg-6 hidden-slide-right">
                     <div class="card-custom p-4 p-md-5 rounded-4">
-                        <h3 class="h5 fw-bold mb-1 text-light">Stack Tecnológico</h3>
-                        <p class="text-secondary small mb-4">Ferramentas que uso no dia a dia</p>
+                        <h3 class="h5 fw-bold mb-1 text-light">Stack Tecnológica Homologada</h3>
+                        <p class="text-secondary small mb-4">Ambientes de desenvolvimento e linguagens de produção</p>
                         <div class="d-flex flex-wrap gap-2">
-                            <span class="skill-badge"><i class="devicon-html5-plain colored fs-4 me-2"></i>HTML5</span>
-                            <span class="skill-badge"><i class="devicon-css3-plain colored fs-4 me-2"></i>CSS3</span>
+                            <span class="skill-badge"><i class="devicon-supabase-plain colored fs-4 me-2"></i>Supabase</span>
+                            <span class="skill-badge"><i class="devicon-postgresql-plain colored fs-4 me-2"></i>PostgreSQL</span>
+                            <span class="skill-badge"><i class="devicon-javascript-plain colored fs-4 me-2"></i>JavaScript ES6+</span>
                             <span class="skill-badge"><i class="devicon-bootstrap-plain colored fs-4 me-2"></i>Bootstrap 5</span>
-                            <span class="skill-badge"><i class="devicon-javascript-plain colored fs-4 me-2"></i>JavaScript</span>
-                            <span class="skill-badge"><i class="devicon-ionic-original colored fs-4 me-2"></i>Ionic</span>
+                            <span class="skill-badge"><i class="devicon-figma-plain colored fs-4 me-2"></i>Figma UI/UX</span>
+                            <span class="skill-badge"><i class="devicon-linux-plain colored fs-4 me-2"></i>Linux Core</span>
                             <span class="skill-badge"><i class="devicon-php-plain colored fs-4 me-2"></i>PHP</span>
                             <span class="skill-badge"><i class="devicon-mysql-plain-wordmark colored fs-4 me-2"></i>MySQL</span>
-                            <span class="skill-badge"><i class="devicon-figma-plain colored fs-4 me-2"></i>Figma</span>
+                            <span class="skill-badge"><i class="devicon-html5-plain colored fs-4 me-2"></i>HTML5 Semântico</span>
+                            <span class="skill-badge"><i class="devicon-css3-plain colored fs-4 me-2"></i>CSS Grid &amp; Anim</span>
                         </div>
                     </div>
                 </div>
@@ -187,80 +182,161 @@
         </div>
     </section><br><br><br><br><br><br>
 
-
-    <!-- ── PROJETOS ────────────────────────────────────────── -->
     <section id="projetos" class="py-5 section-padding" style="background: rgba(0,0,0,0.25);">
         <div class="container py-4">
             <div class="text-center mb-5 hidden-fade">
-                <span class="text-gradient fw-bold text-uppercase tracking-wider small d-block mb-2">Portfólio</span>
-                <h2 class="display-5 fw-bold">Trabalhos em Destaque</h2>
+                <span class="text-gradient fw-bold text-uppercase tracking-wider small d-block mb-2">Production Labs</span>
+                <h2 class="display-5 fw-bold">Aplicações em Destaque</h2>
                 <div class="d-flex justify-content-center gap-2 mt-4 flex-wrap" id="project-filters">
-                    <button class="btn btn-sm btn-filter active" data-filter="all">Todos</button>
-                    <button class="btn btn-sm btn-filter" data-filter="frontend">Front-End</button>
-                    <button class="btn btn-sm btn-filter" data-filter="backend">Fullstack</button>
+                    <button class="btn btn-sm btn-filter active" data-filter="all">Todos os Sistemas</button>
+                    <button class="btn btn-sm btn-filter" data-filter="frontend">Front-End &amp; UI</button>
+                    <button class="btn btn-sm btn-filter" data-filter="fullstack">Fullstack / Backend</button>
                 </div>
             </div>
 
             <div class="row g-4" id="projects-grid">
 
-                <!-- Projeto 1 -->
-                <div class="col-md-6 project-item hidden-fade" data-category="backend">
-                    <div class="card h-100 card-custom rounded-4">
-                        <div class="project-iframe-container">
-                            <iframe src="https://kaike-js.github.io/MV-CONTABI/MV-CONTABI/" class="project-iframe" loading="lazy" title="Preview MV Contabi"></iframe>
-                            <div class="iframe-overlay">
-                                <span class="interact-badge position-absolute top-50 start-50 translate-middle">
-                                    <i class="bi bi-cursor me-2"></i>Passe o mouse para navegar
-                                </span>
+                <div class="col-md-6 project-item hidden-fade" data-category="fullstack">
+                    <div class="card h-100 card-custom rounded-4 overflow-hidden spec-card">
+                        <div class="card-spec-header d-flex justify-content-between align-items-center px-4 pt-3">
+                            <div class="spec-tabs d-flex gap-2">
+                                <button class="spec-tab-btn active" data-tab="live"><i class="bi bi-window-fullscreen me-1"></i>Live View</button>
+                                <button class="spec-tab-btn" data-tab="blueprint"><i class="bi bi-cpu me-1"></i>Tech Specs</button>
+                            </div>
+                        </div>
+                        <div class="position-relative card-view-wrapper">
+                            <div class="project-iframe-container view-panel active-panel" id="atlas-live">
+                                <iframe src="https://kaike-js.github.io/ATLASFINANCE/ATLAS_FINANCE/" class="project-iframe" loading="lazy" title="Preview Atlas Finance"></iframe>
+                                <div class="iframe-overlay">
+                                    <span class="interact-badge position-absolute top-50 start-50 translate-middle">
+                                        <i class="bi bi-cursor me-2"></i>Clique para interagir com o SaaS
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="project-blueprint-container view-panel p-4" id="atlas-blueprint">
+<pre><code>{
+  <span class="key">"architecture"</span>: <span class="string">"BaaS (Backend as a Service)"</span>,
+  <span class="key">"database"</span>: <span class="string">"PostgreSQL Relational Grid"</span>,
+  <span class="key">"security"</span>: [
+    <span class="string">"Row Level Security (RLS) Active"</span>,
+    <span class="string">"Custom Claims Metadata Auth"</span>,
+    <span class="string">"XSS Sanitization Filters"</span>
+  ],
+  <span class="key">"pipelines"</span>: <span class="string">"Automated Cron Report Generation"</span>,
+  <span class="key">"hosting"</span>: <span class="string">"GitHub Pages Sandbox via Workflow"</span>
+}</code></pre>
                             </div>
                         </div>
                         <div class="card-body p-4 d-flex flex-column">
                             <div class="d-flex align-items-center justify-content-between mb-2">
-                                <h5 class="card-title text-light fw-bold fs-4 contato mb-0">Landing page MV Contabi</h5>
-                                <a href="https://kaike-js.github.io/MV-CONTABI/MV-CONTABI/" target="_blank" class="project-ext-link" title="Abrir projeto">
+                                <h5 class="card-title text-light fw-bold fs-4 mb-0">Atlas Finance — SaaS Control</h5>
+                                <a href="https://kaike-js.github.io/ATLASFINANCE/ATLAS_FINANCE/" target="_blank" class="project-ext-link" title="Abrir em nova aba">
                                     <i class="bi bi-arrow-up-right"></i>
                                 </a>
                             </div>
                             <p class="card-text text-secondary mt-2 flex-grow-1" style="font-weight:300;">
-                                Elevação da presença digital da consultoria. Interface projetada no Figma e implementada com layouts responsivos avançados e animações nativas em CSS/JS.
+                                Plataforma financeira complexa multi-inquilino. Desenvolvida com infraestrutura <strong>Supabase</strong> e banco relacional <strong>PostgreSQL</strong>. Conta com fluxos estritos de autenticação baseada em metadados customizados, tratamento de FormData avançado, e proteção rígida corporativa via políticas RLS (Row Level Security) e Auth Policies anti-SQL Injection/XSS.
                             </p>
                             <div class="mt-4 d-flex flex-wrap gap-2">
-                                <span class="tech-tag">Bootstrap 5</span>
-                                <span class="tech-tag">Figma</span>
-                                <span class="tech-tag">JS Avançado</span>
+                                <span class="tech-tag"><i class="devicon-supabase-plain colored me-1"></i>Supabase (BaaS)</span>
+                                <span class="tech-tag"><i class="devicon-postgresql-plain colored me-1"></i>PostgreSQL</span>
+                                <span class="tech-tag"><i class="bi bi-shield-lock me-1"></i>RLS Security</span>
+                                <span class="tech-tag"><i class="bi bi-envelope-paper me-1"></i>Automation API</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Projeto 2 -->
                 <div class="col-md-6 project-item hidden-fade" data-category="frontend">
-                    <div class="card h-100 card-custom rounded-4">
-                        <div class="project-iframe-container">
-                            
-                            <iframe src="https://kaike-js.github.io/MINHA_NETFLIX/PROJETO-NETFLIX/" title="Preview Netflix UI Clone" class="project-iframe" loading="lazy"></iframe>
-                            
-                            <div class="iframe-overlay">
-                                <span class="badge bg-primary position-absolute top-50 start-50 translate-middle shadow-lg interact-badge">
-                                    <i class="bi bi-mouse me-2"></i>Passe o mouse para navegar
-                                </span>
+                    <div class="card h-100 card-custom rounded-4 overflow-hidden spec-card">
+                        <div class="card-spec-header d-flex justify-content-between align-items-center px-4 pt-3">
+                            <div class="spec-tabs d-flex gap-2">
+                                <button class="spec-tab-btn active" data-tab="live"><i class="bi bi-window-fullscreen me-1"></i>Live View</button>
+                                <button class="spec-tab-btn" data-tab="blueprint"><i class="bi bi-cpu me-1"></i>Tech Specs</button>
                             </div>
-                            
+                        </div>
+                        <div class="position-relative card-view-wrapper">
+                            <div class="project-iframe-container view-panel active-panel" id="mv-live">
+                                <iframe src="https://kaike-js.github.io/MV-CONTABI/MV-CONTABI/" class="project-iframe" loading="lazy" title="Preview MV Contabi"></iframe>
+                                <div class="iframe-overlay">
+                                    <span class="interact-badge position-absolute top-50 start-50 translate-middle">
+                                        <i class="bi bi-cursor me-2"></i>Navegue pela Plataforma
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="project-blueprint-container view-panel p-4" id="mv-blueprint">
+<pre><code>{
+  <span class="key">"design_system"</span>: <span class="string">"Figma Premium Layout Customization"</span>,
+  <span class="key">"layout_engine"</span>: <span class="string">"Flexbox Elastic Container Modeling"</span>,
+  <span class="key">"performance"</span>: {
+    <span class="key">"frame_rate"</span>: <span class="string">"60fps Native Micro-interactions"</span>,
+    <span class="key">"responsiveness"</span>: <span class="string">"Fluid Multi-Breakpoint Grid"</span>
+  },
+  <span class="key">"seo_score"</span>: <span class="string">"Semantic HTML Optimization Matrix"</span>
+}</code></pre>
+                            </div>
                         </div>
                         <div class="card-body p-4 d-flex flex-column">
                             <div class="d-flex align-items-center justify-content-between mb-2">
-                                <h5 class="card-title text-light fw-bold fs-4 titulo-netflix mb-0">Netflix UI Clone</h5>
-                                <a href="https://kaike-js.github.io/MINHA_NETFLIX/PROJETO-NETFLIX/" target="_blank" class="project-ext-link text-secondary transition-all" title="Abrir projeto">
+                                <h5 class="card-title text-light fw-bold fs-4 contato mb-0">MV Contabi — Digital Platform</h5>
+                                <a href="https://kaike-js.github.io/MV-CONTABI/MV-CONTABI/" target="_blank" class="project-ext-link" title="Abrir em nova aba">
+                                    <i class="bi bi-arrow-up-right"></i>
+                                </a>
+                            </div>
+                            <p class="card-text text-secondary mt-2 flex-grow-1" style="font-weight:300;">
+                                Solução corporativa de alto padrão para consultoria contábil. Concebida inteiramente no Figma focado em UX psicológico e implementada com layouts fluidos avançados, contêineres elásticos Flexbox, tratamento responsivo complexo e micro-interações nativas de alto frame rate em CSS/JS.
+                            </p>
+                            <div class="mt-4 d-flex flex-wrap gap-2">
+                                <span class="tech-tag"><i class="devicon-bootstrap-plain colored me-1"></i>Bootstrap 5</span>
+                                <span class="tech-tag"><i class="devicon-figma-plain colored me-1"></i>Figma Design</span>
+                                <span class="tech-tag">Animações Nativas</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 project-item hidden-fade" data-category="frontend">
+                    <div class="card h-100 card-custom rounded-4 overflow-hidden spec-card">
+                        <div class="card-spec-header d-flex justify-content-between align-items-center px-4 pt-3">
+                            <div class="spec-tabs d-flex gap-2">
+                                <button class="spec-tab-btn active" data-tab="live"><i class="bi bi-window-fullscreen me-1"></i>Live View</button>
+                                <button class="spec-tab-btn" data-tab="blueprint"><i class="bi bi-cpu me-1"></i>Tech Specs</button>
+                            </div>
+                        </div>
+                        <div class="position-relative card-view-wrapper">
+                            <div class="project-iframe-container view-panel active-panel" id="netflix-live">
+                                <iframe src="https://kaike-js.github.io/MINHA_NETFLIX/PROJETO-NETFLIX/" title="Preview Netflix UI Clone" class="project-iframe" loading="lazy"></iframe>
+                                <div class="iframe-overlay">
+                                    <span class="badge bg-primary position-absolute top-50 start-50 translate-middle shadow-lg interact-badge">
+                                        <i class="bi bi-mouse me-2"></i>Interagir com a Interface
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="project-blueprint-container view-panel p-4" id="netflix-blueprint">
+<pre><code>{
+  <span class="key">"rendering_mode"</span>: <span class="string">"Deep Virtual DOM Manipulation"</span>,
+  <span class="key">"grid_system"</span>: <span class="string">"2D Matrix (CSS Grid & Row Flexbox)"</span>,
+  <span class="key">"optimization"</span>: [
+    <span class="string">"Asynchronous Media Lazy Loading"</span>,
+    <span class="string">"Strict Breakpoint Pixel Fidelity"</span>
+  ]
+}</code></pre>
+                            </div>
+                        </div>
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h5 class="card-title text-light fw-bold fs-4 titulo-netflix mb-0">Netflix UI Architecture Clone</h5>
+                                <a href="https://kaike-js.github.io/MINHA_NETFLIX/PROJETO-NETFLIX/" target="_blank" class="project-ext-link text-secondary transition-all" title="Abrir em nova aba">
                                     <i class="bi bi-arrow-up-right fs-5"></i>
                                 </a>
                             </div>
                             <p class="card-text text-secondary mt-2 flex-grow-1" style="font-weight:300;">
-                                Recriação pixel-perfect da interface web da Netflix, focada em organização de grid complexa, manipulação de DOM e fidelidade de design em múltiplos breakpoints.
+                                Engenharia reversa visual de interface de streaming com fidelidade matemática em múltiplos breakpoints. Explora manipulação profunda estruturada do DOM, layouts de matriz complexos bidimensionais (CSS Grid/Flexbox) e lazy loading de mídia.
                             </p>
                             <div class="mt-4 d-flex flex-wrap gap-2">
-                                <span class="badge bg-dark text-secondary">HTML5</span>
-                                <span class="badge bg-dark text-secondary">CSS3 Grid</span>
-                                <span class="badge bg-dark text-secondary">Flexbox</span>
+                                <span class="tech-tag">CSS Grid Matrix</span>
+                                <span class="tech-tag">DOM Manipulation</span>
+                                <span class="tech-tag">Data Rendering</span>
                             </div>
                         </div>
                     </div>
@@ -270,23 +346,22 @@
         </div>
     </section><br><br><br><br><br><br>
 
-    <!-- ── CONTATO ─────────────────────────────────────────── -->
     <section id="contato" class="py-5 section-padding position-relative overflow-hidden">
         <div class="glow-bg-contact"></div>
         <div class="container py-4 position-relative z-1">
             <div class="row g-5 align-items-center">
 
                 <div class="col-lg-5 hidden-slide-left">
-                    <span class="text-gradient fw-bold text-uppercase tracking-wider small d-block mb-2">Contato</span>
-                    <h2 class="display-5 fw-bold mb-4">Vamos criar algo fantástico?</h2>
+                    <span class="text-gradient fw-bold text-uppercase tracking-wider small d-block mb-2">Conexão Segura</span>
+                    <h2 class="display-5 fw-bold mb-4">Vamos projetar seu próximo sistema?</h2>
                     <p class="text-secondary mb-4 fs-5" style="font-weight:300; line-height:1.8;">
-                        Estou sempre aberto a discutir novas ideias, arquitetura de sistemas ou oportunidades de desenvolvimento.
+                        Disponível para consultorias de interface, integrações seguras com Supabase e arquiteturas escaláveis.
                     </p>
 
                     <div class="contact-info-card d-flex align-items-center gap-3 mb-3">
                         <div class="contact-icon-wrap"><i class="bi bi-envelope-at"></i></div>
                         <div>
-                            <span class="d-block text-secondary small text-uppercase tracking-wider mb-1">E-mail Direto</span>
+                            <span class="d-block text-secondary small text-uppercase tracking-wider mb-1">E-mail Profissional</span>
                             <a href="mailto:pedrokaike2x@gmail.com" class="text-light fw-semibold text-decoration-none">pedrokaike2x@gmail.com</a>
                         </div>
                     </div>
@@ -294,7 +369,7 @@
                     <div class="contact-info-card d-flex align-items-center gap-3">
                         <div class="contact-icon-wrap"><i class="bi bi-github"></i></div>
                         <div>
-                            <span class="d-block text-secondary small text-uppercase tracking-wider mb-1">GitHub</span>
+                            <span class="d-block text-secondary small text-uppercase tracking-wider mb-1">Repositórios de Código</span>
                             <a href="https://github.com/kaike-js" target="_blank" class="text-light fw-semibold text-decoration-none">github.com/kaike-js</a>
                         </div>
                     </div>
@@ -302,41 +377,84 @@
 
                 <div class="col-lg-7 hidden-slide-right">
                     <form id="contact-form" class="card-custom p-4 p-md-5 rounded-4" novalidate>
-    <div class="row g-4 mb-4">
-        <div class="col-sm-6">
-            <label for="form-nome" class="form-label text-secondary small text-uppercase tracking-wider">Nome Completo</label>
-            <input type="text" id="form-nome" name="name" class="form-control input-custom" required placeholder="Como devo te chamar?">
-        </div>
-        <div class="col-sm-6">
-            <label for="form-email" class="form-label text-secondary small text-uppercase tracking-wider">E-mail Profissional</label>
-            <input type="email" id="form-email" name="email" class="form-control input-custom" required placeholder="seu@email.com">
-        </div>
-    </div>
-    <div class="mb-4">
-        <label for="form-mensagem" class="form-label text-secondary small text-uppercase tracking-wider">Detalhes do Projeto</label>
-        <textarea id="form-mensagem" name="message" class="form-control input-custom" rows="4" required placeholder="Conte-me sobre sua ideia..."></textarea>
-    </div>
-    
-    <div id="form-feedback" class="text-danger small mb-3 d-none"></div>
+                        <div class="row g-4 mb-4">
+                            <div class="col-sm-6">
+                                <label for="form-nome" class="form-label text-secondary small text-uppercase tracking-wider">Nome Completo / Empresa</label>
+                                <input type="text" id="form-nome" name="name" class="form-control input-custom" required placeholder="Ex: Diretor de Tecnologia">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="form-email" class="form-label text-secondary small text-uppercase tracking-wider">E-mail de Negócios</label>
+                                <input type="email" id="form-email" name="email" class="form-control input-custom" required placeholder="seu@dominio.com">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="form-mensagem" class="form-label text-secondary small text-uppercase tracking-wider">Escopo Inicial do Projeto</label>
+                            <textarea id="form-mensagem" name="message" class="form-control input-custom" rows="4" required placeholder="Descreva os requisitos técnicos da aplicação ou funcionalidade..."></textarea>
+                        </div>
+                        
+                        <div id="form-feedback" class="text-danger small mb-3 d-none"></div>
 
-    <button type="submit" class="btn btn-primary w-100 py-3 mt-2 fs-6 fw-semibold" id="submit-btn">
-        <span id="submit-text">Enviar Mensagem</span>
-    </button>
-</form>
+                        <button type="submit" class="btn btn-primary w-100 py-3 mt-2 fs-6 fw-semibold" id="submit-btn">
+                            <span id="submit-text">Enviar Mensagem</span>
+                        </button>
+                    </form>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- ── FOOTER ──────────────────────────────────────────── -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="footer-inner">
-                <span class="footer-brand text-gradient">&lt;Dev_Kaike /&gt;</span>
-                <span class="text-secondary small">&copy; 2026 — Construído com precisão.</span>
-                <a href="#home" class="footer-top-link">
-                    Voltar ao topo <i class="bi bi-arrow-up"></i>
+<footer class="site-footer position-relative overflow-hidden">
+        <div class="container pt-5 pb-4">
+            <div class="row gy-4 justify-content-between">
+                
+                <div class="col-lg-4 col-md-12 text-start">
+                    <div class="footer-brand-wrapper mb-3">
+                        <span class="footer-brand text-gradient fs-4 fw-bold">&lt;Dev_Kaike /&gt;</span>
+                    </div>
+                    <p class="text-secondary small pe-lg-4 lh-base">
+                        Engenharia Front-end de alta performance e desenvolvimento de interfaces com foco em fluidez, estética moderna e arquiteturas escaláveis.
+                    </p>
+                    <div class="footer-status d-inline-flex align-items-center gap-2 mt-2">
+                        <span class="status-pulse-dot"></span>
+                        <span class="text-secondary small font-monospace" style="font-size: 0.72rem; letter-spacing: 0.05em;">
+                            CORE ENGINE: OPERATIONAL // LATENCY: 12ms
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-6 col-md-4 ps-lg-5">
+                    <h6 class="text-white small text-uppercase tracking-wider fw-bold mb-3" style="font-size: 0.75rem;">Navegação</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="#home" class="footer-link-item">Início</a></li>
+                        <li><a href="#sobre" class="footer-link-item">Sobre Mim</a></li>
+                        <li><a href="#projetos" class="footer-link-item">Projetos</a></li>
+                        <li><a href="#contato" class="footer-link-item">Contato</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-6 col-md-4">
+                    <h6 class="text-white small text-uppercase tracking-wider fw-bold mb-3" style="font-size: 0.75rem;">Conectar</h6>
+                    <ul class="list-unstyled d-flex flex-column gap-2 small">
+                        <li><a href="https://github.com/kaike-js" target="_blank" class="footer-link-item d-inline-flex align-items-center gap-2"><i class="bi bi-github"></i> GitHub</a></li>
+                        <li><a href="https://www.linkedin.com/in/pedro-kaike-5631b6404/" target="_blank" class="footer-link-item d-inline-flex align-items-center gap-2"><i class="bi bi-linkedin"></i> LinkedIn</a></li>
+                        <li><a href="mailto:pedrokaike2x@gmail.com"class="footer-link-item d-inline-flex align-items-center gap-2"><i class="bi bi-envelope-at"></i> E-mail</a></li>
+                        <li><a href="https://kaike-js.github.io/MV-CONTABI/MV-CONTABI/" target="_blank" class="footer-link-item d-inline-flex align-items-center gap-2"><i class="bi bi-globe"></i> MV Contabi <span class="badge text-bg-purple-light opacity-70">Client</span></a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom-bar d-flex align-items-center justify-content-between pt-4 mt-5 flex-wrap gap-3" style="border-top: 1px solid var(--border);">
+                <span class="text-secondary small font-monospace" style="font-size: 0.75rem;">
+                    &copy; 2026 — Arquitetado sob demanda. Sem duplicações de código.
+                </span>
+                
+                <a href="#home" class="footer-top-link-premium d-inline-flex align-items-center gap-2 small">
+                    <span class="text-uppercase tracking-wider font-monospace" style="font-size: 0.72rem;">Terminal Top</span>
+                    <div class="top-arrow-box">
+                        <i class="bi bi-arrow-up"></i>
+                    </div>
                 </a>
             </div>
         </div>
