@@ -1,8 +1,10 @@
 /**
- * Dev.Kaike Portfolio — script.js v2
- * Mesmo DNA, código limpo e sem duplicações.
+ * Kaike_Dev Portfolio — Core Script Engine v3
+ * Arquitetura modularizada, sem duplicações de escopo e otimizada para produção.
  */
 document.addEventListener('DOMContentLoaded', () => {
+
+    // ── 1. GESTÃO DO PRELOADER ──────────────────────────────────────────────
     const preloader = document.getElementById("preloader");
     if (preloader) {
         setTimeout(() => {
@@ -11,12 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
-
-    // ── SCROLL DINÂMICO PARA NAVBAR PREMIUM ──────────────────
+    // ── 2. SCROLL DINÂMICO PARA NAVBAR PREMIUM ──────────────────────────────
     const navbar = document.querySelector('.navbar');
     const navContainer = document.getElementById('nav-container');
 
     function checkScroll() {
+        if (!navbar || !navContainer) return;
+        
         if (window.scrollY > 40) {
             navbar.classList.add('nav-scrolled');
             if (window.innerWidth >= 992) {
@@ -33,43 +36,46 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.addEventListener('scroll', checkScroll);
     window.addEventListener('resize', checkScroll);
-    checkScroll(); // Executa ao carregar a página
+    checkScroll();
 
-    // ── DIGITAL HACKER REVEAL EFFECT NO LOGO ──────────────────
+    // ── 3. REVEAL EFFECT DIGITAL HACKER (LOGO) ──────────────────────────────
     const logo = document.querySelector('.glitch-logo');
-    const chars = '01XYZ<>/_[]{}*#+$@';
-    let originalText = logo.innerText;
-    let interval = null;
+    if (logo) {
+        const chars = '01XYZ<>/_[]{}*#+$@';
+        let originalText = logo.innerText;
+        let logoInterval = null;
 
-    logo.addEventListener('mouseover', () => {
-        let iteration = 0;
-        clearInterval(interval);
-        
-        interval = setInterval(() => {
-            logo.innerText = originalText
-                .split("")
-                .map((char, index) => {
-                    if(index < iteration) {
-                        return originalText[index];
-                    }
-                    return chars[Math.floor(Math.random() * chars.length)];
-                })
-                .join("");
+        logo.addEventListener('mouseover', () => {
+            let iteration = 0;
+            clearInterval(logoInterval);
             
-            if(iteration >= originalText.length) {
-                clearInterval(interval);
-            }
-            iteration += 1 / 3; // Velocidade do efeito
-        }, 30);
-    });
+            logoInterval = setInterval(() => {
+                logo.innerText = originalText
+                    .split("")
+                    .map((char, index) => {
+                        if(index < iteration) {
+                            return originalText[index];
+                        }
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    })
+                    .join("");
+                
+                if(iteration >= originalText.length) {
+                    clearInterval(logoInterval);
+                }
+                iteration += 1 / 3;
+            }, 30);
+        });
+    }
 
-    // ── 1. CURSOR ROXO ANIMADO ───────────────────────────────
+    // ── 4. ACIONADORES HARDWARE-DEPENDENTES (DESKTOPap ONLY) ──────────────────
     const isDesktop = window.matchMedia('(pointer: fine)').matches;
 
     if (isDesktop) {
-        const dot    = document.createElement('div');
+        // Cursor customizado com interpolação linear (LERP)
+        const dot = document.createElement('div');
         const circle = document.createElement('div');
-        dot.className    = 'custom-cursor-dot';
+        dot.className = 'custom-cursor-dot';
         circle.className = 'custom-cursor-circle';
         document.body.appendChild(dot);
         document.body.appendChild(circle);
@@ -78,11 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
         let cx = -100, cy = -100;
 
         document.addEventListener('mousemove', e => {
-            mx = e.clientX; my = e.clientY;
+            mx = e.clientX; 
+            my = e.clientY;
             dot.style.transform = `translate3d(${mx}px,${my}px,0)`;
         });
 
-        // LERP suave para o círculo externo
         (function renderCursor() {
             cx += (mx - cx) * 0.14;
             cy += (my - cy) * 0.14;
@@ -90,18 +96,18 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(renderCursor);
         })();
 
-        // Expansão ao passar em elementos interativos
-        document.querySelectorAll('a, button, .card-custom, .skill-badge, .input-custom').forEach(el => {
+        // Efeito Hover nos elementos clicáveis
+        document.querySelectorAll('a, button, .card-custom, .skill-badge, .input-custom, .spec-tab-btn').forEach(el => {
             el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
             el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
         });
 
-        // ── 2. BOTÕES MAGNÉTICOS ─────────────────────────────
-        document.querySelectorAll('.btn-primary, .btn-filter').forEach(btn => {
+        // Botões Magnéticos
+        document.querySelectorAll('.btn-primary, .btn-filter, .theme-shifter-btn').forEach(btn => {
             btn.addEventListener('mousemove', e => {
                 const r = btn.getBoundingClientRect();
-                const x = (e.clientX - r.left - r.width  / 2) * 0.32;
-                const y = (e.clientY - r.top  - r.height / 2) * 0.32;
+                const x = (e.clientX - r.left - r.width / 2) * 0.32;
+                const y = (e.clientY - r.top - r.height / 2) * 0.32;
                 btn.style.transform = `translate3d(${x}px,${y}px,0)`;
             });
             btn.addEventListener('mouseleave', () => {
@@ -109,25 +115,25 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // ── 3. PALAVRAS MAGNÉTICAS (HERO) ────────────────────
+        // Títulos Flutuantes Magnéticos (Hero)
         document.querySelectorAll('.floating-word').forEach(word => {
             word.style.transition = 'transform .4s cubic-bezier(0.16,1,0.3,1)';
 
             word.addEventListener('mousemove', e => {
                 const r = word.getBoundingClientRect();
-                const dx = (e.clientX - (r.left + r.width  / 2)) * 0.45;
-                const dy = (e.clientY - (r.top  + r.height / 2)) * 0.45;
+                const dx = (e.clientX - (r.left + r.width / 2)) * 0.45;
+                const dy = (e.clientY - (r.top + r.height / 2)) * 0.45;
                 word.style.transform = `translate3d(${dx}px,${dy}px,0) rotate(${dx * 0.1}deg)`;
             });
 
             word.addEventListener('mouseleave', () => {
                 word.style.transition = 'transform .8s cubic-bezier(0.25,1,0.5,1)';
-                word.style.transform  = 'translate3d(0,0,0) rotate(0deg)';
+                word.style.transform = 'translate3d(0,0,0) rotate(0deg)';
             });
         });
     }
 
-    // ── 4. SCROLL REVEAL ─────────────────────────────────────
+    // ── 5. SCROLL REVEAL (INTERSECTION OBSERVER) ────────────────────────────
     const revealObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
             if (!entry.isIntersecting) return;
@@ -139,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.hidden-fade, .hidden-slide-left, .hidden-slide-right')
         .forEach(el => revealObserver.observe(el));
 
-    // ── 5. FILTRO DE PROJETOS ────────────────────────────────
+    // ── 6. FILTRO DINÂMICO DE PROJETOS ──────────────────────────────────────
     document.querySelectorAll('.btn-filter').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
@@ -151,70 +157,278 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ── 6. FORMULÁRIO: CINEMATIC FOCUS + MORPHING BUTTON ────
-    const form      = document.getElementById('contact-form');
-    const submitBtn = document.getElementById('submit-btn');
-    const submitTxt = document.getElementById('submit-text');
+    // ── 7. INTERACTIVE BLUEPRINT TABS (PREVIEW VS TECH SPECS) ────────────────
+    const specCards = document.querySelectorAll('.spec-card');
+    specCards.forEach(card => {
+        const tabButtons = card.querySelectorAll('.spec-tab-btn');
+        const viewPanels = card.querySelectorAll('.view-panel');
 
-    if (form) {
-        // Focus mode — outros campos somem levemente
-        const inputs = form.querySelectorAll('.input-custom');
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                inputs.forEach(other => {
-                    if (other === input) return;
-                    other.style.opacity   = '0.35';
-                    other.style.transform = 'scale(0.98)';
-                });
-            });
-            input.addEventListener('blur', () => {
-                inputs.forEach(other => {
-                    other.style.opacity   = '1';
-                    other.style.transform = 'scale(1)';
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const requestedTab = button.getAttribute('data-tab');
+
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                viewPanels.forEach(panel => {
+                    panel.classList.remove('active-panel');
+                    if (panel.id.includes(requestedTab)) {
+                        panel.classList.add('active-panel');
+                    }
                 });
             });
         });
+    });
 
-        // Submit com morphing e partículas
-        form.addEventListener('submit', e => {
+    // ── 8. CONTADOR DE ESTATÍSTICAS ANIMADO (HERO OUT EASING) ────────────────
+    const statsElements = document.querySelectorAll('.hero-stat-num');
+    if (statsElements.length > 0) {
+        const statsObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const targetEl = entry.target;
+                    const targetValue = parseInt(targetEl.getAttribute('data-target'), 10);
+                    let startValue = 0;
+                    const duration = 2000; 
+                    const startTime = performance.now();
+                    
+                    function updateCounter(currentTime) {
+                        const elapsedTime = currentTime - startTime;
+                        if (elapsedTime < duration) {
+                            const progress = elapsedTime / duration;
+                            const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+                            
+                            startValue = Math.floor(easeOutProgress * targetValue);
+                            targetEl.textContent = startValue;
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            targetEl.textContent = targetValue;
+                        }
+                    }
+                    requestAnimationFrame(updateCounter);
+                    observer.unobserve(targetEl);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        statsElements.forEach(el => statsObserver.observe(el));
+    }
+
+    // ── 9. COPIADOR ASÍNCRONO DE E-MAIL COM TOAST HUD TERMINAL ──────────────
+    const emailTrigger = document.getElementById('copy-email-btn');
+    if (emailTrigger) {
+        let hudToast = document.querySelector('.hud-toast');
+        if (!hudToast) {
+            hudToast = document.createElement('div');
+            hudToast.className = 'hud-toast';
+            hudToast.innerHTML = `<span class="hud-prefix">[SYS]:</span> <span class="hud-content-msg"></span>`;
+            document.body.appendChild(hudToast);
+        }
+        
+        emailTrigger.addEventListener('click', (e) => {
             e.preventDefault();
-            const originalText = submitTxt.textContent;
-
-            // Loading
-            submitBtn.classList.add('loading');
-
-            setTimeout(() => {
-                submitBtn.classList.remove('loading');
-                submitBtn.classList.add('success');
-                submitTxt.textContent = '✓ Mensagem Enviada!';
-                fireParticles(submitBtn);
-
+            const emailAddress = "pedrokaike2x@gmail.com";
+            
+            navigator.clipboard.writeText(emailAddress).then(() => {
+                hudToast.querySelector('.hud-content-msg').textContent = "E-mail copiado com sucesso!";
+                hudToast.classList.add('active');
+                
+                fireParticles(emailTrigger);
+                
                 setTimeout(() => {
-                    form.reset();
-                    submitBtn.classList.remove('success');
-                    submitTxt.textContent = originalText;
-                }, 4000);
-            }, 2000);
+                    hudToast.classList.remove('active');
+                }, 3500);
+            }).catch(() => {
+                window.location.href = `mailto:${emailAddress}`;
+            });
         });
     }
 
-    // ── 7. PARTÍCULAS DE SUCESSO ─────────────────────────────
-    function fireParticles(btn) {
-        const r = btn.getBoundingClientRect();
-        const cx = r.left + r.width  / 2;
-        const cy = r.top  + r.height / 2;
+    // ── 10. SELETOR DE ACCENT VARIÁVEL (MATRIX COLOR SHIFTER) ───────────────
+    const accentBtn = document.getElementById('accent-toggle-btn');
+    const themes = [
+        { accent: '#a855f7', glow: 'rgba(168,85,247,0.35)', accent2: '#6366f1' }, // Purple Core
+        { accent: '#00f2fe', glow: 'rgba(0,242,254,0.35)',  accent2: '#4facfe' }, // Cyber Cyan
+        { accent: '#10b981', glow: 'rgba(16,185,129,0.35)',  accent2: '#059669' }, // Emerald Dev
+        { accent: '#ff9f43', glow: 'rgba(255,159,67,0.35)',   accent2: '#ff5252' }  // Amber Industrial
+    ];
+    let currentThemeIndex = 0;
+    
+    if (accentBtn) {
+        accentBtn.addEventListener('click', () => {
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+            const nextTheme = themes[currentThemeIndex];
+            
+            document.documentElement.style.setProperty('--accent', nextTheme.accent);
+            document.documentElement.style.setProperty('--accent-glow', nextTheme.glow);
+            document.documentElement.style.setProperty('--accent2', nextTheme.accent2);
+            
+            accentBtn.style.transform = 'scale(0.85) rotate(45deg)';
+            setTimeout(() => {
+                accentBtn.style.transform = 'none';
+            }, 200);
+        });
+    }
+
+    // ── 11. ACTIVE NAVBAR LINK TRACKER (SPY SCROLL) ─────────────────────────
+    const navLinks = document.querySelectorAll('.navbar .nav-link');
+    const sections = document.querySelectorAll('section[id]');
+
+    if(sections.length > 0 && navLinks.length > 0) {
+        const sectionObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(a => a.classList.remove('active'));
+                    const targetId = entry.target.getAttribute('id');
+                    const activeLink = document.querySelector(`.navbar .nav-link[href="#${targetId}"]`);
+                    if(activeLink) activeLink.classList.add('active');
+                }
+            });
+        }, { threshold: 0.45 });
+
+        sections.forEach(s => sectionObserver.observe(s));
+    }
+
+    // ── 12. FORMULÁRIO DE CONTATO: FOCUS CINEMÁTICO & WEB3FORMS API ──────────
+    const form = document.getElementById('contact-form');
+    if (form) {
+        const inputs = form.querySelectorAll('.input-custom');
+        const submitBtn = document.getElementById('submit-btn');
+        const submitText = document.getElementById('submit-text');
+        const feedbackMsg = document.getElementById('form-feedback');
+
+        // Focus Isolation Mode
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                inputs.forEach(other => {
+                    if (other !== input) {
+                        other.parentElement.style.opacity = '0.3';
+                        other.parentElement.style.transform = 'scale(0.98)';
+                    }
+                });
+                input.parentElement.style.opacity = '1';
+                input.parentElement.style.transform = 'scale(1.02)';
+            });
+
+            input.addEventListener('blur', () => {
+                inputs.forEach(other => {
+                    other.parentElement.style.opacity = '1';
+                    other.parentElement.style.transform = 'scale(1)';
+                });
+            });
+        });
+
+        // Email Pattern Validator
+        function isValidEmail(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        // Async Form Pipeline
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); 
+            
+            const nome = document.getElementById('form-nome').value.trim();
+            const email = document.getElementById('form-email').value.trim();
+            const mensagem = document.getElementById('form-mensagem').value.trim();
+
+            feedbackMsg.classList.add('d-none');
+            feedbackMsg.innerText = '';
+
+            if (!nome || !email || !mensagem) {
+                feedbackMsg.innerText = 'Por favor, preencha todos os campos.';
+                feedbackMsg.classList.remove('d-none');
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                feedbackMsg.innerText = 'O formato do e-mail é inválido. Verifique e tente novamente.';
+                feedbackMsg.classList.remove('d-none');
+                return;
+            }
+
+            // Morphing Loading State
+            const originalText = submitText.innerHTML;
+            submitBtn.style.width = `${submitBtn.offsetHeight}px`; 
+            submitText.style.opacity = '0'; 
+            submitBtn.style.borderRadius = '50px';
+            submitBtn.style.pointerEvents = 'none'; 
+            submitBtn.classList.add('btn-loading');
+
+            const payload = {
+                access_key: '585fad95-1fee-47bc-a97e-c2526973b719',
+                subject: 'Novo Contato do Portfólio - ' + nome,
+                name: nome,
+                email: email,
+                message: mensagem
+            };
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (response.status === 200) {
+                    submitBtn.classList.remove('btn-loading');
+                    submitBtn.style.width = `100%`;
+                    submitBtn.style.backgroundColor = '#10b981'; 
+                    submitBtn.style.color = '#fff';
+                    submitText.innerHTML = '✓ Mensagem Encadeada!';
+                    submitText.style.opacity = '1';
+                    
+                    fireParticles(submitBtn);
+
+                    setTimeout(() => {
+                        form.reset();
+                        submitBtn.style.backgroundColor = ''; 
+                        submitBtn.style.borderRadius = '';
+                        submitText.innerHTML = originalText;
+                        submitBtn.style.pointerEvents = 'auto';
+                    }, 4000);
+                } else {
+                    throw new Error(result.message);
+                }
+
+            } catch (error) {
+                console.error('API Error Exception:', error);
+                
+                submitBtn.classList.remove('btn-loading');
+                submitBtn.style.width = `100%`;
+                submitBtn.style.borderRadius = '';
+                submitBtn.style.pointerEvents = 'auto';
+                submitText.style.opacity = '1';
+                submitText.innerHTML = originalText;
+                
+                feedbackMsg.innerText = 'Erro na transmissão: ' + error.message; 
+                feedbackMsg.classList.remove('d-none');
+            }
+        });
+    }
+
+    // ── 13. ENGINE DE FÍSICA DE PARTÍCULAS (GLOBAL) ─────────────────────────
+    function fireParticles(targetButton) {
+        const rect = targetButton.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
 
         for (let i = 0; i < 16; i++) {
             const p = document.createElement('div');
             p.className = 'success-particle';
             document.body.appendChild(p);
             p.style.left = `${cx}px`;
-            p.style.top  = `${cy}px`;
+            p.style.top = `${cy}px`;
 
             const angle = Math.random() * Math.PI * 2;
-            const v     = 45 + Math.random() * 75;
-            const tx    = Math.cos(angle) * v;
-            const ty    = Math.sin(angle) * v - 20;
+            const v = 45 + Math.random() * 75;
+            const tx = Math.cos(angle) * v;
+            const ty = Math.sin(angle) * v - 20;
 
             p.animate([
                 { transform: 'translate(-50%,-50%) scale(1)', opacity: 1 },
@@ -228,194 +442,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ── 8. ACTIVE NAV LINK NO SCROLL ────────────────────────
-    const navLinks = document.querySelectorAll('.navbar .nav-link');
-    const sections = document.querySelectorAll('section[id]');
-
-    new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            navLinks.forEach(a => a.classList.remove('active'));
-            const active = document.querySelector(`.navbar .nav-link[href="#${entry.target.id}"]`);
-            active?.classList.add('active');
-        });
-    }, { threshold: 0.45 }).observe && sections.forEach(s =>
-        new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                navLinks.forEach(a => a.classList.remove('active'));
-                document.querySelector(`.navbar .nav-link[href="#${entry.target.id}"]`)?.classList.add('active');
-            });
-        }, { threshold: 0.45 }).observe(s)
-    );
-
 });
-
-
-// ==========================================================
-        // 6. FORMULÁRIO: VALIDAÇÃO, API E BOTÃO MORPHING
-        // ==========================================================
-        const form = document.getElementById('contact-form');
-        
-        if (form) {
-            const inputs = form.querySelectorAll('.input-custom');
-            const submitBtn = form.querySelector('#submit-btn');
-            const submitText = form.querySelector('#submit-text');
-            const feedbackMsg = document.getElementById('form-feedback');
-
-            // --- MÓDULO 1: FOCUS MODE (Escurece os outros campos) ---
-            inputs.forEach(input => {
-                input.addEventListener('focus', () => {
-                    inputs.forEach(other => {
-                        if (other !== input) {
-                            other.parentElement.style.opacity = '0.3';
-                            other.parentElement.style.transform = 'scale(0.98)';
-                        }
-                    });
-                    input.parentElement.style.opacity = '1';
-                    input.parentElement.style.transform = 'scale(1.02)';
-                });
-
-                input.addEventListener('blur', () => {
-                    inputs.forEach(other => {
-                        other.parentElement.style.opacity = '1';
-                        other.parentElement.style.transform = 'scale(1)';
-                    });
-                });
-            });
-
-            // --- MÓDULO 2: VALIDAÇÃO DE E-MAIL (Regex) ---
-            function isValidEmail(email) {
-                // Valida a estrutura real de um e-mail. 
-                // Dica Sênior: Não bloqueie e-mails que não sejam apenas gmail/hotmail, 
-                // pois recrutadores usam e-mails corporativos (ex: rh@empresa.com.br).
-                // Este regex exige um formato válido: texto@texto.texto
-                const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return regex.test(email);
-            }
-
-            // --- MÓDULO 3: ENVIO VIA FETCH API (Web3Forms) ---
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault(); 
-                
-                const nome = document.getElementById('form-nome').value.trim();
-                const email = document.getElementById('form-email').value.trim();
-                const mensagem = document.getElementById('form-mensagem').value.trim();
-
-                // Reset de erros
-                feedbackMsg.classList.add('d-none');
-                feedbackMsg.innerText = '';
-
-                // Validação Front-end
-                if (!nome || !email || !mensagem) {
-                    feedbackMsg.innerText = 'Por favor, preencha todos os campos.';
-                    feedbackMsg.classList.remove('d-none');
-                    return;
-                }
-
-                if (!isValidEmail(email)) {
-                    feedbackMsg.innerText = 'O formato do e-mail é inválido. Verifique e tente novamente.';
-                    feedbackMsg.classList.remove('d-none');
-                    return;
-                }
-
-                // 1. Inicia Animação de Loading no Botão
-                const originalWidth = submitBtn.offsetWidth;
-                const originalText = submitText.innerHTML;
-                
-                submitBtn.style.width = `${submitBtn.offsetHeight}px`; 
-                submitText.style.opacity = '0'; 
-                submitBtn.style.borderRadius = '50px';
-                submitBtn.style.pointerEvents = 'none'; 
-                submitBtn.classList.add('btn-loading');
-
-                // 2. Prepara o pacote de dados para a API
-                const payload = {
-                    access_key: '585fad95-1fee-47bc-a97e-c2526973b719', // VOCÊ VAI COLOCAR SUA CHAVE AQUI
-                    subject: 'Novo Contato do Portfólio - ' + nome,
-                    name: nome,
-                    email: email,
-                    message: mensagem
-                };
-
-                try {
-                    // 3. Faz a requisição HTTP POST real para a API
-                    const response = await fetch('https://api.web3forms.com/submit', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify(payload)
-                    });
-
-                    const result = await response.json();
-
-                    if (response.status === 200) {
-                        // SUCESSO: Transforma o botão para verde
-                        submitBtn.classList.remove('btn-loading');
-                        submitBtn.style.width = `100%`;
-                        submitBtn.style.backgroundColor = '#10b981'; 
-                        submitBtn.style.color = '#fff';
-                        submitText.innerHTML = 'Mensagem Enviada!';
-                        submitText.style.opacity = '1';
-                        
-                        fireParticles(submitBtn); // Explode as partículas verdes
-
-                        // Reseta após 4 segundos
-                        setTimeout(() => {
-                            form.reset();
-                            submitBtn.style.backgroundColor = ''; 
-                            submitBtn.style.borderRadius = '';
-                            submitText.innerHTML = originalText;
-                            submitBtn.style.pointerEvents = 'auto';
-                        }, 4000);
-                    } else {
-                        throw new Error(result.message);
-                    }
-
-                }  catch (error) {
-                    console.error('Erro detalhado:', error); // Isso vai mostrar o erro no console (F12)
-                    
-                    submitBtn.classList.remove('btn-loading');
-                    submitBtn.style.width = `100%`;
-                    submitBtn.style.borderRadius = '';
-                    submitBtn.style.pointerEvents = 'auto';
-                    submitText.style.opacity = '1';
-                    
-                    // Exibe o erro real para você saber o que está rolando
-                    feedbackMsg.innerText = 'Erro: ' + error.message; 
-                    feedbackMsg.classList.remove('d-none');
-                }
-            });
-
-            // --- MÓDULO 4: FÍSICA DAS PARTÍCULAS ---
-            function fireParticles(button) {
-                const rect = button.getBoundingClientRect();
-                for (let i = 0; i < 15; i++) {
-                    const particle = document.createElement('div');
-                    particle.className = 'success-particle';
-                    document.body.appendChild(particle);
-                    
-                    const startX = rect.left + rect.width / 2;
-                    const startY = rect.top + rect.height / 2;
-                    particle.style.left = `${startX}px`;
-                    particle.style.top = `${startY}px`;
-                    
-                    const angle = Math.random() * Math.PI * 2;
-                    const velocity = 40 + Math.random() * 80;
-                    const tx = Math.cos(angle) * velocity;
-                    const ty = Math.sin(angle) * velocity - 20;
-                    
-                    particle.animate([
-                        { transform: `translate(-50%, -50%) scale(1)`, opacity: 1 },
-                        { transform: `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) scale(0)`, opacity: 0 }
-                    ], {
-                        duration: 600 + Math.random() * 400,
-                        easing: 'cubic-bezier(0, .9, .57, 1)'
-                    });
-                    
-                    setTimeout(() => particle.remove(), 1000);
-                }
-            }
-        }
