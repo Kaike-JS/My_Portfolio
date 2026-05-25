@@ -1,10 +1,10 @@
 /* ============================================================
-   Dev.Kaike Portfolio — CSS v2 (Upgrade, não rewrite)
-   Mesma identidade: dark #050505, gradiente purple/indigo,
-   Plus Jakarta Sans, cursor roxo animado.
+   Dev.Kaike Portfolio — CSS v2.5 (Fully Cleaned & Optimized)
+   Identidade: Dark #050505, Ambient Fluid Mesh Purple/Indigo,
+   Plus Jakarta Sans, Design Responsivo de Alta Performance.
    ============================================================ */
 
-/* ── 1. RESET & TOKENS ──────────────────────────────────────*/
+/* ── 1. RESET, TOKENS & TRANSITIONS GLOBAL ──────────────────*/
 *, *::before, *::after { box-sizing: border-box; }
 
 :root {
@@ -32,15 +32,25 @@ body {
     overflow-x: hidden;
     overscroll-behavior-y: none;
     -webkit-font-smoothing: antialiased;
+    -webkit-user-select: none; 
+    user-select: none;
 }
 
-body { -webkit-user-select: none; user-select: none; }
-p, h1, h2, h3, h4, h5, span, label,
-.input-custom, .navbar-brand { -webkit-user-select: text; user-select: text; }
+p, h1, h2, h3, h4, h5, span, label, .input-custom, .navbar-brand { 
+    -webkit-user-select: text; user-select: text; 
+}
 img { -webkit-user-drag: none; }
 a { text-decoration: none; color: inherit; }
 
-/* ── 2. CURSOR ──────────────────────────────────────────────*/
+/* Suavização de transições globais para troca de paleta (Matrix Theme) */
+:root, body, .text-gradient, .btn-primary, .card-custom, .tech-tag, .navbar, .custom-cursor-circle {
+    transition: background-color 0.4s var(--ease-out), 
+                border-color 0.4s var(--ease-out), 
+                box-shadow 0.4s var(--ease-out), 
+                color 0.3s var(--ease-out);
+}
+
+/* ── 2. CURSOR CUSTOMIZADO ──────────────────────────────────*/
 @media (pointer: fine) {
     *, a, button, .card-custom, .skill-badge, .input-custom, .btn-filter {
         cursor: none !important;
@@ -67,10 +77,7 @@ body.cursor-hover .custom-cursor-circle {
     background: rgba(168,85,247,0.08); border-color: transparent;
 }
 
-
-/* ========================================================================== */
-/* 2. ENGINE DO PRELOADER (KEITA YAMADA STYLE - COMENTADO NO SEU LAYOUT)      */
-/* ========================================================================== */
+/* ── 3. ENGINE DO PRELOADER ─────────────────────────────────*/
 body.no-scroll { overflow: hidden !important; }
 
 #preloader {
@@ -102,98 +109,60 @@ body.no-scroll { overflow: hidden !important; }
     0% { transform: translateY(100%); opacity: 0; }
     100% { transform: translateY(0); opacity: 1; }
 }
-/* ==========================================================
-   CHUVA DE METEOROS REFINADA (MAIS SUAVE E MENOS INTENSA)
-========================================================== */
+
+/* ── 4. CHUVA DE METEOROS REFINADA ──────────────────────────*/
 .shooting-stars {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    pointer-events: none;
-    overflow: hidden;
+    position: absolute; inset: 0; z-index: 1;
+    pointer-events: none; overflow: hidden;
 }
-
 .shooting-stars span {
-    position: absolute;
-    width: 140px; /* Rastros um pouco mais discretos */
-    height: 1.5px; /* Linha mais fina */
-    /* Opacidade máxima reduzida para 0.4 para ficar bem sutil */
+    position: absolute; width: 140px; height: 1.5px;
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4));
-    opacity: 0;
-    animation: meteorRain linear infinite;
+    opacity: 0; animation: meteorRain linear infinite;
 }
-
 .shooting-stars span::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    width: 3px; /* Cabeça menor */
-    height: 3px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: 50%;
-    /* Brilho esfumaçado bem mais suave e menos estourado */
+    content: ''; position: absolute; top: 50%; right: 0;
+    transform: translateY(-50%); width: 3px; height: 3px;
+    background: rgba(255, 255, 255, 0.7); border-radius: 50%;
     box-shadow: 0 0 8px 1px rgba(255, 255, 255, 0.4); 
 }
-
 @keyframes meteorRain {
-    0% {
-        transform: rotate(135deg) translateX(0);
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    60% {
-        opacity: 1;
-    }
-    100% {
-        transform: rotate(135deg) translateX(2200px);
-        opacity: 0;
-    }
+    0% { transform: rotate(135deg) translateX(0); opacity: 0; }
+    10% { opacity: 1; }
+    60% { opacity: 1; }
+    100% { transform: rotate(135deg) translateX(2200px); opacity: 0; }
 }
 
-/* TIMING MAIS ESPAÇADO
-   Aumentamos o tempo de duração de todas as estrelas (entre 3s e 6s).
-   Agora elas cruzam o espaço de forma calma, dando um ar mais premium.
-*/
 .shooting-stars span:nth-child(1)  { top: -5%;  left: 10%;  animation-delay: 0s;   animation-duration: 4.0s; }
 .shooting-stars span:nth-child(2)  { top: -5%;  left: 35%;  animation-delay: 2.5s; animation-duration: 5.5s; }
 .shooting-stars span:nth-child(3)  { top: -5%;  left: 60%;  animation-delay: 1.0s; animation-duration: 4.5s; }
 .shooting-stars span:nth-child(4)  { top: -5%;  left: 85%;  animation-delay: 4.8s; animation-duration: 6.0s; }
 .shooting-stars span:nth-child(5)  { top: -5%;  left: 100%; animation-delay: 0.5s; animation-duration: 3.5s; }
-
 .shooting-stars span:nth-child(6)  { top: 10%;  left: 105%; animation-delay: 3.2s; animation-duration: 4.8s; }
 .shooting-stars span:nth-child(7)  { top: 25%;  left: 105%; animation-delay: 1.8s; animation-duration: 4.2s; }
 .shooting-stars span:nth-child(8)  { top: 40%;  left: 105%; animation-delay: 6.0s; animation-duration: 5.8s; }
 .shooting-stars span:nth-child(9)  { top: 55%;  left: 105%; animation-delay: 2.9s; animation-duration: 4.6s; }
 .shooting-stars span:nth-child(10) { top: -5%;  left: 20%;  animation-delay: 5.2s; animation-duration: 3.8s; }
-
 .shooting-stars span:nth-child(11) { top: -5%;  left: 45%;  animation-delay: 1.5s; animation-duration: 5.2s; }
 .shooting-stars span:nth-child(12) { top: -5%;  left: 75%;  animation-delay: 7.0s; animation-duration: 6.2s; }
 .shooting-stars span:nth-child(13) { top: 15%;  left: 105%; animation-delay: 4.1s; animation-duration: 3.6s; }
 .shooting-stars span:nth-child(14) { top: 35%;  left: 105%; animation-delay: 0.8s; animation-duration: 5.0s; }
 .shooting-stars span:nth-child(15) { top: -5%;  left: 55%;  animation-delay: 3.9s; animation-duration: 4.4s; }
 
-
-/* ==========================================================
-   HEADER & NAVBAR ULTRA-PROFISSIONAL (HIGH-TECH)
-========================================================== */
+/* ── 5. HEADER & NAVBAR ULTRA-PROFISSIONAL ──────────────────*/
 .nav-tech-transition {
-    transition: background-color 0.4s var(--ease-out), 
-                backdrop-filter 0.4s var(--ease-out), 
-                box-shadow 0.4s var(--ease-out),
-                border-color 0.4s var(--ease-out);
     border-bottom: 1px solid transparent;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 0.5rem; padding-bottom: 0.5rem;
 }
 
-/* Estado ativo injetado via JS ao rolar o scroll */
+#nav-container { transition: padding 0.4s var(--ease-out); }
+
+.bg-blur {
+    background-color: rgba(5,5,5,0.75) !important;
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border) !important;
+}
+
 .nav-scrolled {
     background-color: rgba(5, 5, 5, 0.75) !important;
     backdrop-filter: blur(20px) !important;
@@ -202,24 +171,32 @@ body.no-scroll { overflow: hidden !important; }
     box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 15px 0 rgba(168, 85, 247, 0.03);
 }
 
-/* Container encolhe suavemente */
-#nav-container {
-    transition: padding 0.4s var(--ease-out);
+.navbar .nav-link {
+    color: var(--text-muted); font-weight: 500;
+    position: relative; transition: color .3s;
+    padding-bottom: 2px !important;
 }
+.navbar .nav-link::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
+    height: 1px; background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform .35s var(--ease-out);
+}
+.navbar .nav-link:hover, .navbar .nav-link.active { color: var(--text-main) !important; }
+.navbar .nav-link:hover::after, .navbar .nav-link.active::after { transform: scaleX(1); }
 
-/* Botão de contato estilo Dashboard Premium */
-.nav-btn-cta {
+/* Botão de Destaque CTA */
+.navbar .nav-link.nav-btn-cta {
     background: rgba(168, 85, 247, 0.06) !important;
     border: 1px solid rgba(168, 85, 247, 0.25) !important;
     border-radius: 100px !important;
     color: var(--text-main) !important;
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-size: 0.9rem; font-weight: 600;
     transition: all 0.3s var(--ease-out) !important;
 }
-.nav-btn-cta::after { display: none !important; } /* Remove linha de baixo */
+.navbar .nav-link.nav-btn-cta::after { display: none !important; } 
 
-.nav-btn-cta:hover {
+.navbar .nav-link.nav-btn-cta:hover {
     background: var(--text-main) !important;
     color: #050505 !important;
     border-color: var(--text-main) !important;
@@ -227,94 +204,80 @@ body.no-scroll { overflow: hidden !important; }
     transform: translateY(-1px);
 }
 
-/* Customização do botão mobile hambúrguer para ficar tecnológico */
-.tech-toggler {
-    padding: 0.5rem;
-    background: transparent;
+/* Botão Alternador de Accent (Theme Shifter) */
+.theme-shifter-btn {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--text-main); padding: 0.5rem 0.75rem; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; transition: all 0.3s var(--ease-out);
 }
+.theme-shifter-btn:hover {
+    border-color: var(--accent); color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow); transform: translateY(-1px);
+}
+
+/* Mobile Hambúrguer Menu */
+.tech-toggler { padding: 0.5rem; background: transparent; border: none; }
 .tech-toggler-icon {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--text-main);
-    position: relative;
-    transition: transform 0.3s;
+    display: block; width: 22px; height: 2px;
+    background: var(--text-main); position: relative; transition: transform 0.3s;
 }
 .tech-toggler-icon::before, .tech-toggler-icon::after {
-    content: '';
-    position: absolute;
-    width: 100%; height: 2px;
-    background: var(--text-main);
-    left: 0; transition: transform 0.3s, top 0.3s;
+    content: ''; position: absolute; width: 100%; height: 2px;
+    background: var(--text-main); left: 0; transition: transform 0.3s, top 0.3s;
 }
 .tech-toggler-icon::before { top: -6px; }
 .tech-toggler-icon::after { top: 6px; }
 
-/* Animação do botão aberto no mobile */
 .tech-toggler[aria-expanded="true"] .tech-toggler-icon { background: transparent; }
 .tech-toggler[aria-expanded="true"] .tech-toggler-icon::before { transform: rotate(45deg); top: 0; }
 .tech-toggler[aria-expanded="true"] .tech-toggler-icon::after { transform: rotate(-45deg); top: 0; }
 
-/* EFETIO DE LOGO: MATRIX / CYBER REVEAL CLOCK */
-.glitch-logo {
-    position: relative;
-    font-family: monospace;
-    letter-spacing: -0.02em;
-}
+.glitch-logo { position: relative; font-family: monospace; letter-spacing: -0.02em; }
 
-/* ── 3. UTILITÁRIOS ─────────────────────────────────────────*/
+/* ── 6. UTILITÁRIOS ─────────────────────────────────────────*/
 .tracking-wider  { letter-spacing: 0.1em; }
 .tracking-tight  { letter-spacing: -0.04em; }
 .section-padding { padding-top: 100px; padding-bottom: 100px; }
 
 .text-gradient {
     background: linear-gradient(135deg, #e2e8f0 0%, #a855f7 50%, #6366f1 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+@keyframes blink { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+
+/* ── 7. HERO SECTION (Com Mesh Gradient Dinâmico) ───────────*/
+#home {
+    position: relative;
+    background-color: var(--bg-dark);
+    /* Fundo composto por nébulas de gradientes radiais nativos das cores do design system */
+    background-image: 
+        radial-gradient(at 10% 20%, rgba(168, 85, 247, 0.07) 0px, transparent 45%),
+        radial-gradient(at 90% 15%, rgba(99, 102, 241, 0.06) 0px, transparent 45%),
+        radial-gradient(at 50% 80%, rgba(168, 85, 247, 0.04) 0px, transparent 50%),
+        radial-gradient(at 80% 85%, rgba(99, 102, 241, 0.05) 0px, transparent 40%);
+    background-size: 130% 130%;
+    animation: ambientFluid 25s ease infinite alternate;
 }
 
-/* ── 4. NAVBAR ──────────────────────────────────────────────*/
-.bg-blur {
-    background-color: rgba(5,5,5,0.75) !important;
-    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border) !important;
+@keyframes ambientFluid {
+    0% { background-position: 0% 10%; }
+    50% { background-position: 30% 70%; }
+    100% { background-position: 100% 30%; }
 }
 
-.navbar .nav-link {
-    color: var(--text-muted); font-weight: 500;
-    position: relative; transition: color .3s;
-    padding-bottom: 2px !important;
-}
-
-.navbar .nav-link::after {
-    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
-    height: 1px; background: var(--accent);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform .35s var(--ease-out);
-}
-
-.navbar .nav-link:hover,
-.navbar .nav-link.active { color: var(--text-main) !important; }
-.navbar .nav-link:hover::after,
-.navbar .nav-link.active::after { transform: scaleX(1); }
-
-/* ── 5. HERO ────────────────────────────────────────────────*/
 .glow-bg-hero {
     position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%,-55%);
-    width: 700px; height: 700px;
+    transform: translate(-50%,-55%); width: 700px; height: 700px;
     background: radial-gradient(circle, rgba(168,85,247,0.13) 0%, rgba(99,102,241,0.04) 45%, transparent 70%);
     filter: blur(90px); z-index: 0; pointer-events: none;
     animation: heroPulse 8s ease-in-out infinite;
 }
-
 @keyframes heroPulse {
     0%,100% { opacity:.7; transform: translate(-50%,-55%) scale(1); }
     50%      { opacity:1;  transform: translate(-50%,-55%) scale(1.08); }
 }
 
-/* Grade de pontos sutil */
 .hero-dot-grid {
     position: absolute; inset: 0; z-index: 0; pointer-events: none;
     background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
@@ -323,198 +286,56 @@ body.no-scroll { overflow: hidden !important; }
     -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
 }
 
-/* Badge de disponibilidade */
 .availability-badge {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--text-muted);
-    border: 1px solid var(--border);
-    padding: 0.45rem 1.1rem; border-radius: 100px;
+    border: 1px solid var(--border); padding: 0.45rem 1.1rem; border-radius: 100px;
     background: var(--surface);
 }
-
 .avail-dot {
-    width: 7px; height: 7px; border-radius: 50%;
-    background: #22c55e; flex-shrink: 0;
-    box-shadow: 0 0 8px rgba(34,197,94,0.6);
-    animation: blink 2.5s ease-in-out infinite;
-}
-/* ==========================================================
-   HEADER & NAVBAR ULTRA-PROFISSIONAL (HIGH-TECH)
-========================================================== */
-.nav-tech-transition {
-    transition: background-color 0.4s var(--ease-out), 
-                backdrop-filter 0.4s var(--ease-out), 
-                box-shadow 0.4s var(--ease-out),
-                border-color 0.4s var(--ease-out);
-    border-bottom: 1px solid transparent;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    width: 7px; height: 7px; border-radius: 50%; background: #22c55e; flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(34,197,94,0.6); animation: blink 2.5s ease-in-out infinite;
 }
 
-/* Estado ativo injetado via JS ao rolar o scroll */
-.nav-scrolled {
-    background-color: rgba(5, 5, 5, 0.75) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-bottom: 1px solid rgba(168, 85, 247, 0.15) !important;
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7), 0 0 15px 0 rgba(168, 85, 247, 0.03);
-}
-
-/* Container encolhe suavemente */
-#nav-container {
-    transition: padding 0.4s var(--ease-out);
-}
-
-/* Links padrão da Navbar */
-.navbar .nav-link {
-    color: var(--text-muted); font-weight: 500;
-    position: relative; transition: color .3s;
-    padding-bottom: 2px !important;
-}
-
-.navbar .nav-link::after {
-    content: ''; position: absolute; bottom: -2px; left: 0; right: 0;
-    height: 1px; background: var(--accent);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform .35s var(--ease-out);
-}
-
-.navbar .nav-link:hover,
-.navbar .nav-link.active { color: var(--text-main) !important; }
-.navbar .nav-link:hover::after,
-.navbar .nav-link.active::after { transform: scaleX(1); }
-
-/* ── BOTÃO DE CONTATO (CTA DESTAQUE) ─────────────────────── */
-.navbar .nav-link.nav-btn-cta {
-    background: rgba(168, 85, 247, 0.06) !important;
-    border: 1px solid rgba(168, 85, 247, 0.25) !important;
-    border-radius: 100px !important;
-    color: var(--text-main) !important;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: all 0.3s var(--ease-out) !important;
-}
-
-/* Remove a linha roxa debaixo do botão de destaque */
-.navbar .nav-link.nav-btn-cta::after { display: none !important; } 
-
-/* Resolvido o bug do 'Tudo Branco': Forçamos a cor escura no hover */
-.navbar .nav-link.nav-btn-cta:hover {
-    background: var(--text-main) !important;
-    color: #050505 !important; /* Cor preta/escura para contrastar com o fundo branco */
-    border-color: var(--text-main) !important;
-    box-shadow: 0 0 20px rgba(168, 85, 247, 0.25);
-    transform: translateY(-1px);
-}
-
-/* Customização do botão mobile hambúrguer */
-.tech-toggler {
-    padding: 0.5rem;
-    background: transparent;
-}
-.tech-toggler-icon {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--text-main);
-    position: relative;
-    transition: transform 0.3s;
-}
-.tech-toggler-icon::before, .tech-toggler-icon::after {
-    content: '';
-    position: absolute;
-    width: 100%; height: 2px;
-    background: var(--text-main);
-    left: 0; transition: transform 0.3s, top 0.3s;
-}
-.tech-toggler-icon::before { top: -6px; }
-.tech-toggler-icon::after { top: 6px; }
-
-/* Animação do botão aberto no mobile */
-.tech-toggler[aria-expanded="true"] .tech-toggler-icon { background: transparent; }
-.tech-toggler[aria-expanded="true"] .tech-toggler-icon::before { transform: rotate(45deg); top: 0; }
-.tech-toggler[aria-expanded="true"] .tech-toggler-icon::after { transform: rotate(-45deg); top: 0; }
-
-/* Efeito do Logo */
-.glitch-logo {
-    position: relative;
-    font-family: monospace;
-    letter-spacing: -0.02em;
-}
-
-/* ── 3. UTILITÁRIOS ─────────────────────────────────────────*/
-.tracking-wider  { letter-spacing: 0.1em; }
-.tracking-tight  { letter-spacing: -0.04em; }
-.section-padding { padding-top: 100px; padding-bottom: 100px; }
-
-.text-gradient {
-    background: linear-gradient(135deg, #e2e8f0 0%, #a855f7 50%, #6366f1 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-@keyframes blink {
-    0%,100% { opacity:1; } 50% { opacity:.3; }
-}
-
-/* Título hero */
 .hero-title { line-height: 1.05; }
 
-/* Botão ghost com seta */
 .btn-ghost-arrow {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 1rem; font-weight: 500; color: var(--text-muted);
     padding: 0.8rem 1rem; border-radius: 100px;
     transition: color .3s, gap .35s var(--ease-out);
 }
-
 .btn-ghost-arrow:hover { color: var(--text-main); gap: 14px; }
 
-/* Stats hero */
+/* Dashboard Dashboard Hero Stats */
 .hero-stats {
     display: flex; align-items: center; gap: 2.5rem;
-    padding: 1.25rem 2.5rem;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
+    padding: 1.25rem 2.5rem; background: var(--surface);
+    border: 1px solid var(--border); border-radius: 16px; backdrop-filter: blur(10px);
 }
-
 .hero-stat { text-align: center; }
-
 .hero-stat-num {
-    display: block; font-size: 1.65rem; font-weight: 800;
-    letter-spacing: -0.04em;
+    display: block; font-size: 1.65rem; font-weight: 800; letter-spacing: -0.04em;
     background: linear-gradient(135deg, #e2e8f0 0%, #a855f7 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    font-variant-numeric: tabular-nums; /* Evita trepidação de layout no countUp */
 }
-
-.hero-stat-label {
-    display: block; font-size: 0.7rem; color: var(--text-muted);
-    letter-spacing: 0.04em; margin-top: 2px;
+.hero-stat-suffix {
+    font-size: 2.5rem; font-weight: 700; color: var(--accent); margin-left: 2px;
 }
+.hero-stat-label { display: block; font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.04em; margin-top: 2px; }
+.hero-stat-divider { width: 1px; height: 36px; background: var(--border); flex-shrink: 0; }
 
-.hero-stat-divider {
-    width: 1px; height: 36px; background: var(--border); flex-shrink: 0;
-}
-
-/* Scroll indicator */
 .scroll-indicator {
-    position: absolute; bottom: 2rem; left: 50%;
-    transform: translateX(-50%);
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 8px;
-    color: var(--text-muted); font-size: 0.65rem; letter-spacing: 0.15em;
-    text-transform: uppercase;
+    color: var(--text-muted); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
 }
-
 .scroll-indicator-line {
-    width: 1px; height: 48px;
-    background: linear-gradient(to bottom, transparent, var(--accent));
+    width: 1px; height: 48px; background: linear-gradient(to bottom, transparent, var(--accent));
     animation: scrollDrop 1.8s ease-in-out infinite;
 }
-
 @keyframes scrollDrop {
     0%   { transform: scaleY(0); transform-origin: top; }
     50%  { transform: scaleY(1); transform-origin: top; }
@@ -522,454 +343,333 @@ body.no-scroll { overflow: hidden !important; }
     100% { transform: scaleY(0); transform-origin: bottom; }
 }
 
-/* Palavras magnéticas */
 .floating-word { margin-right: 6px; display: inline-block; will-change: transform; }
 
-/* ── 6. TICKER ──────────────────────────────────────────────*/
+/* ── 8. TICKER (SKILLS ROLANTES) ────────────────────────────*/
 .ticker-wrap {
-    overflow: hidden;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-    background: rgba(255,255,255,0.015);
-    padding: 0.9rem 0;
+    overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.015); padding: 0.9rem 0;
 }
-
-.ticker-track {
-    display: inline-flex; align-items: center; gap: 2.5rem;
-    white-space: nowrap;
-    animation: tickerRoll 28s linear infinite;
-}
-
-.ticker-track span {
-    font-size: 0.78rem; font-weight: 600;
-    letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--text-muted);
-}
-
+.ticker-track { display: inline-flex; align-items: center; gap: 2.5rem; white-space: nowrap; animation: tickerRoll 28s linear infinite; }
+.ticker-track span { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
 .ticker-sep { color: var(--accent) !important; font-size: 0.5rem !important; }
+@keyframes tickerRoll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-@keyframes tickerRoll {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-}
-
-/* ── 7. SOBRE — Quick links ─────────────────────────────────*/
+/* ── 9. SOBRE ───────────────────────────────────────────────*/
 .about-links { display: flex; flex-direction: column; gap: 0.5rem; }
-
-.about-quick-link {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 0.9rem; color: var(--text-muted);
-    transition: color .3s;
-}
-
+.about-quick-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--text-muted); transition: color .3s; }
 .about-quick-link:hover { color: var(--accent); }
 .about-quick-link i { font-size: 1rem; }
 
-/* ── 8. SKILL BADGES ────────────────────────────────────────*/
+/* ── 10. SKILL BADGES ───────────────────────────────────────*/
 .skill-badge {
-    background: var(--surface);
-    border: 1px solid var(--border) !important;
-    color: var(--text-muted);
-    padding: 0.65rem 1.15rem; border-radius: 12px;
-    font-size: 0.875rem; font-weight: 600;
-    display: inline-flex; align-items: center;
+    background: var(--surface); border: 1px solid var(--border) !important;
+    color: var(--text-muted); padding: 0.65rem 1.15rem; border-radius: 12px;
+    font-size: 0.875rem; font-weight: 600; display: inline-flex; align-items: center;
     transition: all .4s var(--ease-out);
 }
-
 .skill-badge i { filter: grayscale(100%); opacity: 0.65; transition: all .4s; }
-
 .skill-badge:hover {
-    color: var(--text-main);
-    border-color: rgba(255,255,255,0.18) !important;
-    background: var(--surface-hov);
-    transform: translateY(-4px) scale(1.02);
+    color: var(--text-main); border-color: rgba(255,255,255,0.18) !important;
+    background: var(--surface-hov); transform: translateY(-4px) scale(1.02);
     box-shadow: 0 8px 25px -8px var(--accent-glow);
 }
-
 .skill-badge:hover i { filter: grayscale(0%); opacity: 1; }
 
-/* ── 9. BOTÕES ──────────────────────────────────────────────*/
+/* ── 11. BOTÕES PREMIUM ─────────────────────────────────────*/
 .btn-primary {
-    background: var(--text-main); color: #0f172a;
-    font-weight: 600; border: none; border-radius: 100px;
-    transition: transform .25s var(--ease-spring), box-shadow .3s, background .3s;
-    will-change: transform;
+    background: var(--text-main); color: #0f172a; font-weight: 600; border: none; border-radius: 100px;
+    transition: transform .2s var(--ease-out), background .3s, box-shadow .3s; will-change: transform;
 }
-
 .btn-primary:hover {
-    background: #ffffff; color: #000;
-    transform: translateY(-3px);
+    background: #ffffff; color: #000; transform: translateY(-3px);
     box-shadow: 0 12px 30px rgba(255,255,255,0.15);
 }
 
 .btn-filter {
-    background: var(--surface); color: var(--text-muted);
-    border: 1px solid var(--border) !important;
+    background: var(--surface); color: var(--text-muted); border: 1px solid var(--border) !important;
     padding: 0.55rem 1.4rem; border-radius: 100px; font-weight: 500;
-    transition: all .3s var(--ease-out); will-change: transform;
+    transition: transform .2s var(--ease-out), background .3s, box-shadow .3s; will-change: transform;
 }
+.btn-filter:hover, .btn-filter.active { background: var(--text-main); color: #0f172a; border-color: var(--text-main) !important; }
 
-.btn-filter:hover,
-.btn-filter.active {
-    background: var(--text-main); color: #0f172a;
-    border-color: var(--text-main) !important;
-}
-
-/* Botões magnéticos */
-.btn-primary, .btn-filter {
-    transition: transform .2s var(--ease-out), background .3s, box-shadow .3s;
-}
-
-/* ── 10. CARDS ──────────────────────────────────────────────*/
+/* ── 12. CARDS HUD & INTERACTION ────────────────────────────*/
 .card-custom {
     background: linear-gradient(160deg, rgba(20,28,43,0.92) 0%, rgba(10,15,28,0.97) 100%) !important;
-    border: 1px solid var(--border) !important;
-    transition: border-color .35s, box-shadow .35s;
+    border: 1px solid var(--border) !important; transition: border-color .35s, box-shadow .35s;
     box-shadow: 0 8px 32px -12px rgba(0,0,0,0.5);
 }
-
 .card-custom:hover {
     border-color: rgba(168,85,247,0.2) !important;
     box-shadow: 0 20px 50px -15px rgba(0,0,0,0.6), 0 0 0 1px rgba(168,85,247,0.1);
 }
 
-/* Gradientes de título nos cards */
-.contato {
-    background: linear-gradient(135deg, #F5D37E 0%, #d4af37 50%, #8E7341 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+.card-spec-header { background: rgba(0, 0, 0, 0.2); border-bottom: 1px solid var(--border); }
+.spec-tab-btn {
+    background: transparent; border: none; color: var(--text-muted);
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.05em;
+    padding: 0.5rem 0.8rem; border-bottom: 2px solid transparent; transition: all 0.3s var(--ease-out);
 }
+.spec-tab-btn:hover { color: var(--text-main); }
+.spec-tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
 
-.titulo-netflix {
-    background: linear-gradient(90deg, #E50914, #9B060D);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+.card-view-wrapper { height: 250px; background: #09090d; position: relative; }
+.view-panel {
+    position: absolute; inset: 0; opacity: 0; pointer-events: none; transition: opacity 0.3s var(--ease-out);
 }
+.view-panel.active-panel { opacity: 1; pointer-events: auto; }
 
-/* ── 11. PROJETOS ───────────────────────────────────────────*/
+/* Gradientes específicos de títulos internos */
+.contato { background: linear-gradient(135deg, #F5D37E 0%, #d4af37 50%, #8E7341 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.titulo-netflix { background: linear-gradient(90deg, #E50914, #9B060D); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 
-/* Container do iframe */
-.project-iframe-container {
-    position: relative; width: 100%; height: 280px;
-    overflow: hidden; border-radius: 1rem 1rem 0 0;
-    background: #050505;
-}
+/* Blueprint / Code Visualizer */
+.project-blueprint-container { overflow-y: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.85rem; line-height: 1.5; background: #07070a; }
+.project-blueprint-container pre { margin: 0; color: #cbd5e1; }
+.project-blueprint-container .key { color: var(--accent); }
+.project-blueprint-container .string { color: var(--accent2); }
 
+/* ── 13. PROJETOS (IFRAME & THUMBS) ─────────────────────────*/
+.project-iframe-container { position: relative; width: 100%; height: 280px; overflow: hidden; border-radius: 1rem 1rem 0 0; background: #050505; }
 .project-iframe {
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    
-    /* 1. Reduzimos para 250% (Gera uma resolução de Desktop padrão ~1200px) */
-    width: 250%; 
-    height: 250%; 
-    
-    /* 2. Escala exata para caber no container (100 / 250 = 0.4) */
-    transform: scale(0.4) translateZ(0); 
-    transform-origin: top left; 
-    
-    border: none; 
-    background-color: #050505;
-    will-change: transform;
+    position: absolute; top: 0; left: 0; width: 250%; height: 250%; 
+    transform: scale(0.4) translateZ(0); transform-origin: top left; 
+    border: none; background-color: #050505; will-change: transform;
 }
-
-/* Libera interação ao hover no card */
 .card-custom:hover .project-iframe { pointer-events: auto; }
 
-/* Container da imagem estática */
-.project-img-container {
-    position: relative; height: 280px;
-    overflow: hidden; border-radius: 1rem 1rem 0 0;
-}
-
-.project-thumb {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform .6s var(--ease-out);
-}
-
+.project-img-container { position: relative; height: 280px; overflow: hidden; border-radius: 1rem 1rem 0 0; }
+.project-thumb { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease-out); }
 .card-custom:hover .project-thumb { transform: scale(1.04); }
 
-/* Overlay (iframe e imagem) */
-.iframe-overlay, .img-overlay {
-    position: absolute; inset: 0; z-index: 5;
-    background: rgba(10,15,28,0.35);
-    transition: opacity .4s;
-}
+.iframe-overlay, .img-overlay { position: absolute; inset: 0; z-index: 5; background: rgba(10,15,28,0.35); transition: opacity .4s; }
+.card-custom:hover .iframe-overlay, .card-custom:hover .img-overlay { opacity: 0; pointer-events: none; }
 
-.card-custom:hover .iframe-overlay,
-.card-custom:hover .img-overlay { opacity: 0; pointer-events: none; }
-
-/* Badge "Interaja" */
 .interact-badge {
-    display: inline-flex; align-items: center;
-    font-size: 0.78rem; font-weight: 500;
-    background: rgba(10,15,28,0.75);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 100px; padding: 0.5rem 1rem;
-    color: var(--text-muted); white-space: nowrap;
-    transition: opacity .3s, transform .3s;
+    display: inline-flex; align-items: center; font-size: 0.78rem; font-weight: 500;
+    background: rgba(10,15,28,0.75); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px; padding: 0.5rem 1rem; color: var(--text-muted); white-space: nowrap; transition: opacity .3s, transform .3s;
 }
-
 .card-custom:hover .interact-badge { opacity: 0; transform: translate(-50%, -44%) scale(0.9); }
 
-/* Link externo no card */
 .project-ext-link {
-    width: 34px; height: 34px;
-    display: inline-flex; align-items: center; justify-content: center;
-    border: 1px solid var(--border); border-radius: 8px;
-    color: var(--text-muted); font-size: 0.9rem; flex-shrink: 0;
-    transition: all .3s var(--ease-out);
+    width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border); border-radius: 8px; color: var(--text-muted); font-size: 0.9rem; flex-shrink: 0; transition: all .3s var(--ease-out);
 }
+.project-ext-link:hover { border-color: var(--accent); color: var(--accent); transform: translate(2px,-2px); }
 
-.project-ext-link:hover {
-    border-color: var(--accent); color: var(--accent);
-    transform: translate(2px,-2px);
-}
-
-/* Tech tags (substituem os badges bg-dark) */
 .tech-tag {
-    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em;
-    background: rgba(168,85,247,0.08);
-    border: 1px solid rgba(168,85,247,0.2);
-    border-radius: 6px; padding: 0.3rem 0.7rem;
-    color: rgba(168,85,247,0.8);
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; background: rgba(168,85,247,0.08);
+    border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 6px; padding: 0.3rem 0.7rem; color: rgba(168,85,247,0.8);
 }
-
-/* Hidden via filtro */
 .project-item.hidden { display: none !important; }
 
-/* ── 12. CONTATO ────────────────────────────────────────────*/
+/* ── 14. CONTATO & HUD TOAST NOTIFICATIONS ──────────────────*/
 .glow-bg-contact {
-    position: absolute; bottom: -10%; right: -10%;
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 65%);
-    filter: blur(80px); pointer-events: none; z-index: 0;
+    position: absolute; bottom: -10%; right: -10%; width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(99,102,241,0.1) 0%, transparent 65%); filter: blur(80px); pointer-events: none; z-index: 0;
 }
-
 .contact-info-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 1rem 1.25rem;
-    transition: border-color .3s, transform .3s var(--ease-out);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    padding: 1rem 1.25rem; transition: border-color .3s, transform .3s var(--ease-out);
 }
-
-.contact-info-card:hover {
-    border-color: rgba(168,85,247,0.25);
-    transform: translateX(4px);
-}
-
+.contact-info-card:hover { border-color: rgba(168,85,247,0.25); transform: translateX(4px); }
 .contact-icon-wrap {
-    width: 42px; height: 42px; flex-shrink: 0;
-    background: rgba(168,85,247,0.1);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; color: var(--accent);
+    width: 42px; height: 42px; flex-shrink: 0; background: rgba(168,85,247,0.1);
+    border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; color: var(--accent);
 }
 
-/* Formulário */
 .input-custom {
-    background: rgba(255,255,255,0.025) !important;
-    border: 1px solid var(--border) !important;
-    color: #fff !important;
-    border-radius: 10px !important;
-    padding: 0.875rem 1.1rem;
-    transition: border-color .3s, box-shadow .3s;
+    background: rgba(255,255,255,0.025) !important; border: 1px solid var(--border) !important;
+    color: #fff !important; border-radius: 10px !important; padding: 0.875rem 1.1rem; transition: border-color .3s, box-shadow .3s;
 }
-
 .input-custom::placeholder { color: rgba(148,163,184,0.5) !important; }
-
 .input-custom:focus {
-    background: rgba(255,255,255,0.04) !important;
-    border-color: rgba(168,85,247,0.45) !important;
-    box-shadow: 0 0 0 3px rgba(168,85,247,0.12) !important;
-    outline: none;
+    background: rgba(255,255,255,0.04) !important; border-color: rgba(168,85,247,0.45) !important;
+    box-shadow: 0 0 0 3px rgba(168,85,247,0.12) !important; outline: none;
 }
+#contact-form .form-field-wrap { transition: opacity .4s var(--ease-out), transform .4s var(--ease-out); }
 
-/* Cinematic focus — campos não focados ficam mais apagados */
-#contact-form .form-field-wrap {
-    transition: opacity .4s var(--ease-out), transform .4s var(--ease-out);
-}
-
-/* Botão morphing */
-#submit-btn {
-    position: relative;
-    transition: all .5s cubic-bezier(0.68,-0.55,0.265,1.55);
-    display: flex; justify-content: center; align-items: center;
-    white-space: nowrap; overflow: hidden;
-}
-
-#submit-btn.loading {
-    pointer-events: none;
-    background: #334155 !important; color: transparent !important;
-}
-
+/* Morphing Submit Button */
+#submit-btn { position: relative; transition: all .5s cubic-bezier(0.68,-0.55,0.265,1.55); display: flex; justify-content: center; align-items: center; white-space: nowrap; overflow: hidden; }
+#submit-btn.loading { pointer-events: none; background: #334155 !important; color: transparent !important; }
 #submit-btn.loading::after {
-    content: ''; position: absolute;
-    width: 22px; height: 22px; border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.25);
-    border-top-color: #fff;
-    animation: spin .8s linear infinite;
+    content: ''; position: absolute; width: 22px; height: 22px; border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.25); border-top-color: #fff; animation: spin .8s linear infinite;
 }
-
 #submit-btn.success { background: #16a34a !important; }
-
 @keyframes spin { to { transform: rotate(360deg); } }
+.success-particle { position: fixed; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; pointer-events: none; z-index: 99999; }
 
-.success-particle {
-    position: fixed; width: 6px; height: 6px;
-    background: #22c55e; border-radius: 50%;
-    pointer-events: none; z-index: 99999;
+/* HUD Notifications (Avisos de Terminal / Copiador de E-mail) */
+.hud-notification {
+    position: fixed; bottom: 30px; right: 30px; background: rgba(10, 10, 15, 0.9);
+    border: 1px solid var(--accent); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
+    padding: 1rem 1.5rem; border-radius: 8px; color: var(--text-main); font-family: monospace; font-size: 0.9rem;
+    z-index: 1000000; display: flex; align-items: center; gap: 10px; transform: translateY(100px); opacity: 0; pointer-events: none;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
 }
+.hud-notification.show { transform: translateY(0); opacity: 1; }
+.hud-code-prefix, .hud-prefix { color: var(--accent); font-weight: bold; }
 
-/* ── 13. FOOTER ─────────────────────────────────────────────*/
-.site-footer {
-    border-top: 1px solid var(--border);
-    padding: 1.5rem 0;
-    background: rgba(0,0,0,0.3);
+.hud-toast {
+    position: fixed; bottom: 30px; right: 30px; background: rgba(5, 5, 8, 0.95);
+    border: 1px solid var(--accent); box-shadow: 0 10px 40px rgba(0,0,0,0.6), 0 0 20px var(--accent-glow);
+    padding: 1rem 1.5rem; border-radius: 8px; color: var(--text-main); font-family: monospace; font-size: 0.85rem;
+    z-index: 10000; transform: translateY(120px); opacity: 0; pointer-events: none;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease; display: flex; align-items: center; gap: 12px;
 }
+.hud-toast.active { transform: translateY(0); opacity: 1; }
 
-.footer-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 0.75rem;
-}
-
+/* ── 15. FOOTER ─────────────────────────────────────────────*/
+.site-footer { border-top: 1px solid var(--border); padding: 1.5rem 0; background: rgba(0,0,0,0.3); }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; }
 .footer-brand { font-weight: 700; font-size: 0.95rem; }
-
-.footer-top-link {
-    font-size: 0.8rem; color: var(--text-muted);
-    display: flex; align-items: center; gap: 4px;
-    transition: color .3s, gap .3s;
-}
-
+.footer-top-link { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 4px; transition: color .3s, gap .3s; }
 .footer-top-link:hover { color: var(--accent); gap: 8px; }
 
-/* ── 14. SCROLL REVEAL ──────────────────────────────────────*/
+/* ── 16. SCROLL REVEAL (GSAP / INTERSECTION OBSERVER) ───────*/
 .hidden-fade, .hidden-slide-left, .hidden-slide-right {
-    opacity: 0;
-    transition: opacity .9s var(--ease-out), transform .9s var(--ease-out);
-    will-change: opacity, transform;
+    opacity: 0; transition: opacity .9s var(--ease-out), transform .9s var(--ease-out); will-change: opacity, transform;
 }
-
 .hidden-fade        { transform: translateY(36px); }
 .hidden-slide-left  { transform: translateX(-48px); }
 .hidden-slide-right { transform: translateX(48px); }
-
 .show-element { opacity: 1 !important; transform: translate(0,0) !important; }
 
-/* ── 15. RESPONSIVE ─────────────────────────────────────────*/
-@media (max-width: 768px) {
-    .hero-stats { flex-direction: column; gap: 1.25rem; padding: 1.25rem 1.75rem; }
-    .hero-stat-divider { width: 36px; height: 1px; }
-    .scroll-indicator { display: none; }
-    .footer-inner { flex-direction: column; text-align: center; }
-}
-
-
 /* ==========================================================================
-   15. RESPONSIVE ARCHITECTURE (Upgraded for Tablets & Mobile)
+   17. CONSOLIDATED RESPONSIVE ARCHITECTURE
    ========================================================================== */
 
 /* ── TABLETS (Abaixo de 991px) ────────────────────────────────────────── */
 @media (max-width: 991.98px) {
     .section-padding { padding-top: 80px; padding-bottom: 80px; }
-    
-    /* Ajustes na Navbar para Mobile */
     .navbar .container { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .bg-blur { background-color: rgba(5,5,5,0.92) !important; } /* Menos transparente no mobile */
-    
-    /* Reduz o tamanho do título para não estourar em tablets */
+    .bg-blur { background-color: rgba(5,5,5,0.92) !important; } 
     .hero-title { font-size: 3.5rem !important; }
-    
-    /* Desativa os efeitos de hover de rotação/escala nas skills para evitar bugs no touch */
     .skill-badge:hover { transform: none !important; }
-    
-    /* Ajuste de espaço nos cards de projeto */
     .project-iframe-container { height: 240px; }
 }
 
 /* ── CELULARES (Abaixo de 768px) ───────────────────────────────────────── */
 @media (max-width: 767.98px) {
-    /* 1. Forçar sumiço do cursor customizado em telas touch */
-    .custom-cursor-dot, 
-    .custom-cursor-circle { 
-        display: none !important; 
-    }
+    /* Desativar completamente cursor customizado no Touch */
+    .custom-cursor-dot, .custom-cursor-circle { display: none !important; }
     * { cursor: auto !important; }
 
-    /* 2. Correção do Preloader */
     .loader-text { font-size: 2.2rem; }
     .loader-dot { font-size: 2.5rem; }
 
-    /* 3. Ajuste do topo (Home Hero) */
     #home { padding-top: 100px !important; }
     .glow-bg-hero { width: 320px; height: 320px; filter: blur(60px); }
-    
-    .hero-title { 
-        font-size: 2.4rem !important; 
-        line-height: 1.2;
-        letter-spacing: -0.02em;
-    }
-    
+    .hero-title { font-size: 2.4rem !important; line-height: 1.2; letter-spacing: -0.02em; }
     .floating-word { margin-right: 4px; }
-    
     #home .lead { font-size: 1rem !important; padding: 0 10px; }
 
-    /* 4. Ajustes nos botões e links da Hero */
     .btn-ghost-arrow { padding: 0.8rem 0; }
-    .btn-ghost-arrow:hover { gap: 8px; } /* Evita saltos visuais bruscos na tela mobile */
+    .btn-ghost-arrow:hover { gap: 8px; } 
 
-    /* 5. Correção estrutural das Stats (Sua regra adaptada e polida) */
-    .hero-stats { 
-        flex-direction: column; 
-        gap: 1.25rem; 
-        padding: 1.5rem; 
-        width: 100%;
-        max-width: 340px;
-    }
+    /* Correção estrutural das Stats */
+    .hero-stats { flex-direction: column; gap: 1.25rem; padding: 1.5rem; width: 100%; max-width: 340px; }
     .hero-stat-divider { width: 40px; height: 1px; background: var(--border); }
     .scroll-indicator { display: none !important; }
 
-    /* 6. Ticker de Skills Rolantes */
     .ticker-wrap { padding: 0.6rem 0; }
     .ticker-track { gap: 1.5rem; }
 
-    /* 7. Sessão Sobre e Skills Grid */
-    #sobre .display-5 { font-size: 2rem; }
+    #sobre .display-5, #contato .display-5 { font-size: 2rem; }
     .about-links { margin-bottom: 1.5rem; }
     .skill-badge { padding: 0.5rem 0.9rem; font-size: 0.8rem; }
 
-    /* 8. RESOLUÇÃO DOS IFRAMES NOS PROJETOS (Crucial para Mobile) */
-    .project-iframe-container { 
-        height: 200px; 
-        pointer-events: none; /* Bloqueia o iframe no mobile para não roubar o scroll do dedo */
-    }
-    /* Altera o fator de escala para simular um tablet/mobile dentro do card */
-    .project-iframe {
-        width: 166.6%;
-        height: 166.6%;
-        transform: scale(0.6) translateZ(0);
-    }
-    .interact-badge { display: none !important; } /* Não faz sentido "passe o mouse" no celular */
-    .iframe-overlay { background: rgba(10,15,28,0.15); } /* Deixa o preview mais visível */
+    /* Ajuste de Iframe no Mobile */
+    .project-iframe-container { height: 200px; pointer-events: none; }
+    .project-iframe { width: 166.6%; height: 166.6%; transform: scale(0.6) translateZ(0); }
+    .interact-badge { display: none !important; } 
+    .iframe-overlay { background: rgba(10,15,28,0.15); } 
 
-    /* 9. Formulário de Contato */
-    #contato .display-5 { font-size: 2rem; }
-    .contact-info-card:hover { transform: none; } /* Desativa o slide lateral no mobile */
-    
+    .contact-info-card:hover { transform: none; } 
     .input-custom { padding: 0.75rem 1rem; font-size: 0.95rem; }
     
-    /* 10. Footer */
-    .footer-inner { 
-        flex-direction: column; 
-        text-align: center; 
-        gap: 1rem; 
-    }
+    .footer-inner { flex-direction: column; text-align: center; gap: 1rem; }
     .footer-top-link { justify-content: center; width: 100%; padding-top: 0.5rem; }
 }
 
-/* ── CELULARES MUITO PEQUENOS (Abaixo de 380px) ────────────────────────── */
+/* ── CELULARES MINÚSCULOS (Abaixo de 380px) ────────────────────────────── */
 @media (max-width: 379.98px) {
     .hero-title { font-size: 2rem !important; }
     .hero-stats { padding: 1rem; }
-    .skill-badge { width: 100%; justify-content: center; } /* Badges em lista cheia se a tela for minúscula */
+    .skill-badge { width: 100%; justify-content: center; } 
+}
+
+
+/* ── 15. FOOTER REFINADO (PREMIUM EDITION) ──────────────────*/
+.site-footer {
+    border-top: 1px solid var(--border);
+    background: linear-gradient(to bottom, rgba(5,5,5,0.6) 0%, #020202 100%);
+    position: relative;
+    z-index: 10;
+}
+
+/* Links em listas com transição orgânica para a direita no hover */
+.footer-link-item {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+    display: inline-block;
+}
+.footer-link-item:hover {
+    color: var(--text-main);
+    transform: translateX(4px);
+}
+
+/* Badge especial para indicar links de clientes ativos */
+.badge.text-bg-purple-light {
+    background: rgba(168, 85, 247, 0.1) !important;
+    border: 1px solid rgba(168, 85, 247, 0.25);
+    color: rgba(168, 85, 247, 0.9);
+    font-size: 0.65rem;
+    padding: 0.2em 0.5em;
+}
+
+/* Engine Pulse Indicator */
+.status-pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(34,197,94,0.6);
+    animation: microBlink 2s ease-in-out infinite;
+    flex-shrink: 0;
+}
+@keyframes microBlink {
+    0%, 100% { opacity: 0.4; transform: scale(0.9); }
+    50% { opacity: 1; transform: scale(1.15); }
+}
+
+/* Botão Premium Terminal Top */
+.footer-top-link-premium {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s var(--ease-out);
+}
+.footer-top-link-premium .top-arrow-box {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s var(--ease-out);
+    background: var(--surface);
+}
+.footer-top-link-premium:hover {
+    color: var(--text-main);
+}
+.footer-top-link-premium:hover .top-arrow-box {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(168, 85, 247, 0.06);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px var(--accent-glow);
 }
